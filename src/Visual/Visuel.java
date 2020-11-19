@@ -1,4 +1,4 @@
-package visual;
+package Visual;
 
 public class Visuel {
     private int CoordX;

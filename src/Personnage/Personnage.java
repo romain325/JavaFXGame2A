@@ -1,6 +1,4 @@
-package personnage;
-
-import java.util.ArrayList;
+package Personnage;
 
 public class Personnage {
     private String nom;
