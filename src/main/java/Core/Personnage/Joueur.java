@@ -1,4 +1,4 @@
-package main.java.Personnage;
+package main.java.Core.Personnage;
 
 public class Joueur extends Personnage {
 
@@ -9,6 +9,7 @@ public class Joueur extends Personnage {
     public void setCoord(int x, int y){
         setX(x);
         setY(y);
+        System.out.println("("+this.getX()+"/"+this.getY()+")");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package main.java.Control;
+package main.java.Core.Control;
 
 public enum Direction {
     UP,

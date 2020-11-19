@@ -1,4 +1,4 @@
-package main.java.Visual;
+package main.java.Core.Visual;
 
 public abstract class Visuel {
     private int CoordX;

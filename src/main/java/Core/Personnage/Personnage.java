@@ -1,6 +1,6 @@
-package main.java.Personnage;
+package main.java.Core.Personnage;
 
-import main.java.Visual.VisuelPersonnage;
+import main.java.Core.Visual.VisuelPersonnage;
 
 public class Personnage {
     private String nom;

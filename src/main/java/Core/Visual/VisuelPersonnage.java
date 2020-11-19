@@ -1,4 +1,4 @@
-package main.java.Visual;
+package main.java.Core.Visual;
 
 public class VisuelPersonnage extends Visuel {
     private static final byte PERSONNAGE_HEIGHT = 64;
