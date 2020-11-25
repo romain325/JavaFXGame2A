@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.View.Controller.MainController"
+            fx:id="root"
+            minWidth="700" minHeight="700"
+            maxHeight="700" maxWidth="700">
+
+    <Canvas fx:id="gameCanvas" height="400" width="400"
+            AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0"
+            AnchorPane.topAnchor="0.0"
+    />
+
+</AnchorPane>

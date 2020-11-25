@@ -1,16 +1,20 @@
 package main.java.Core.Visual;
 
-public abstract class Visuel {
+import main.java.View.Renderer.ZIndex;
+
+public abstract class Visuel implements IVisuel{
     private int CoordX;
     private int CoordY;
-    private int Height;
-    private int Width;
+    private final int Height;
+    private final int Width;
+    private ZIndex renderType;
 
-    public Visuel(int x, int y, int h, int w){
+    public Visuel(int x, int y, int h, int w, ZIndex renderType){
         this.CoordX = x;
         this.CoordY = y;
         this.Height = h;
         this.Width  = w;
+        this.renderType = renderType;
     }
 
     public int getCoordX() {
@@ -27,5 +31,13 @@ public abstract class Visuel {
 
     public void setCoordY(int coordY) {
         CoordY = coordY;
+    }
+
+    public boolean hasCollision() {
+        return renderType.hasCollision();
+    }
+
+    public int getZindex(){
+        return this.renderType.getIndex();
     }
 }

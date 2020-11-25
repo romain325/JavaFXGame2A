@@ -1,6 +1,9 @@
 package main.java.Core.Personnage;
 
+import main.java.Core.Item.Item;
 import main.java.Core.Visual.VisuelPersonnage;
+
+import java.util.List;
 
 public class Personnage {
     private String nom;

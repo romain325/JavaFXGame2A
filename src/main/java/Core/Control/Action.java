@@ -1,9 +1,11 @@
 package main.java.Core.Control;
 
-public enum Direction {
+public enum Action {
     UP,
     DOWN,
     LEFT,
     RIGHT,
-    IDLE
+    IDLE,
+    INTERACT,
+    END
 }

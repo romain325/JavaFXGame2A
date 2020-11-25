@@ -5,23 +5,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.java.Core.Control.KeyBinder;
 import main.java.Core.Control.PlayerController;
 import main.java.Core.Personnage.Joueur;
 
 public class MainFrame extends Application {
-    private static Scene currentScene;
     @Override
     public void start(Stage stage) throws Exception {
-        PlayerController pc = new PlayerController(new Joueur("Pedro"));
-        Parent root = FXMLLoader.load(getClass().getResource("/Vues/MainGrid.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Vues/MainCanvas.fxml"));
+        Scene currentScene = new Scene(root, 700, 700);
+        setupFixedSize(stage,700,700); // CHANGE TO VAR
+
+        // setup KeyListener by passing the scene
+        KeyBinder.initContext(currentScene);
+
         stage.setTitle("MainFrame");
-        currentScene = new Scene(root, 600,400);
-        pc.SetUpListener(currentScene);
         stage.setScene(currentScene);
         stage.show();
     }
 
-    public static Scene getCurrentScene() {
-        return currentScene;
+    private void setupFixedSize(Stage stage,int height, int width){
+        stage.setMinHeight(height);
+        stage.setMaxHeight(height);
+        stage.setMinWidth(width);
+        stage.setMaxWidth(width);
     }
 }
