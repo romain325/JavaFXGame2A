@@ -46,7 +46,7 @@ public class MainController implements Initializable {
                 // TODO Game Logic aka movement/collision/physics taking care of elapsedSec
 
                 playerController.doAction(KeyBinder.getCurrentAction());
-
+                // Thread.sleep(0, (int) elapsedSec);
                 renderer.render();
             }
         };
