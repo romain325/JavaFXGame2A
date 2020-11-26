@@ -5,7 +5,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.View.Controller.MainController"
+            fx:controller="main.java.view.controller.MainController"
             fx:id="root"
             minWidth="700" minHeight="700"
             maxHeight="700" maxWidth="700">

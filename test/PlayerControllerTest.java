@@ -1,7 +1,3 @@
-import javafx.application.Application;
-import main.java.View.MainFrame;
-
-
 public class PlayerControllerTest {
 
 
