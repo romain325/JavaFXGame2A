@@ -3,6 +3,7 @@ package main.java.core.control;
 import javafx.scene.input.KeyCode;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 public enum InteractKey {
     U_KEY(KeyCode.Z, Action.UP),
@@ -15,7 +16,7 @@ public enum InteractKey {
 
 
     private final KeyCode code;
-    private static final EnumMap<KeyCode, Action> action = new EnumMap<>(KeyCode.class);
+    private static HashMap<KeyCode,Action> action = new HashMap<>();
 
     public KeyCode getKeyCode(){
         return this.code;
@@ -23,8 +24,14 @@ public enum InteractKey {
     public static Action getAction(KeyCode k){
         return action.get(k) == null ? Action.IDLE : action.get(k);
     }
+    public Action getAction() {
+        return InteractKey.getAction(this.getKeyCode());
+    }
 
     private void addPair(KeyCode code, Action action){
+        if (InteractKey.action == null){
+            InteractKey.action = new HashMap<>();
+        }
         InteractKey.action.put(code,action);
     }
 

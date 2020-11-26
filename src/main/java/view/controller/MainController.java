@@ -5,6 +5,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import main.java.core.control.Action;
+import main.java.core.control.InteractKey;
+import main.java.core.control.KeyBinder;
 import main.java.core.time.GameLoop;
 import main.java.view.renderer.CanvasRenderer;
 
@@ -19,10 +22,16 @@ public class MainController implements Initializable {
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
+    private KeyBinder keyBinder;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initElements();
+        try {
+            initElements();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
         renderer = new CanvasRenderer(gameCanvas);
         renderer.setBackground(new Image(getClass().getResourceAsStream("/img/map.png")));
 
@@ -33,6 +42,9 @@ public class MainController implements Initializable {
             public void tick(float elapsedSec) {
                 // renderer.prepare();
                 // TODO Game Logic aka movement/collision/physics taking care of elapsedSec
+                if(KeyBinder.isKeyDown(InteractKey.U_KEY.getKeyCode())){
+                    System.out.println("Go UP");
+                }
                 renderer.render();
             }
         };
@@ -40,7 +52,7 @@ public class MainController implements Initializable {
         gameLoop.start();
     }
 
-    protected void initElements(){
+    protected void initElements() throws Exception {
         gameCanvas.setHeight(700); // TODO use the vars
         gameCanvas.setWidth(700);
     }
