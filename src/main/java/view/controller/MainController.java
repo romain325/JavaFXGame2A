@@ -5,9 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import main.java.core.control.Action;
 import main.java.core.control.InteractKey;
 import main.java.core.control.KeyBinder;
+import main.java.core.control.PlayerController;
+import main.java.core.personnage.Joueur;
 import main.java.core.time.GameLoop;
 import main.java.view.renderer.CanvasRenderer;
 
@@ -23,6 +24,8 @@ public class MainController implements Initializable {
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
     private KeyBinder keyBinder;
+    // CHANGER POUR LE VRAI J
+    private PlayerController playerController = new PlayerController(new Joueur("Pedro"));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,12 +42,11 @@ public class MainController implements Initializable {
 
         gameLoop = new GameLoop() {
             @Override
-            public void tick(float elapsedSec) {
-                // renderer.prepare();
+            public void tick(float elapsedSec) throws InterruptedException {
                 // TODO Game Logic aka movement/collision/physics taking care of elapsedSec
-                if(KeyBinder.isKeyDown(InteractKey.U_KEY.getKeyCode())){
-                    System.out.println("Go UP");
-                }
+
+                playerController.doAction(KeyBinder.getCurrentAction());
+
                 renderer.render();
             }
         };

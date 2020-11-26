@@ -14,7 +14,6 @@ public class KeyBinder {
 
     private static Set<KeyCode> keyDown = new HashSet<>();
 
-
     public static void initContext(Scene scene){
         if(KeyBinder.scene != null){
             KeyBinder.removeKeyListener();
@@ -23,8 +22,7 @@ public class KeyBinder {
         setScene(KeyBinder.scene);
     }
 
-
-    public static void setScene(Scene scene){
+    private static void setScene(Scene scene){
         scene.setOnKeyPressed(KeyBinder::onKeyPressed);
         scene.setOnKeyReleased(KeyBinder::onKeyReleased);
     }
@@ -48,6 +46,15 @@ public class KeyBinder {
 
     public static boolean isKeyDown(KeyCode code){
         return keyDown.contains(code);
+    }
+
+    public static Action getCurrentAction(){
+        for (InteractKey key: InteractKey.values()) {
+            if (isKeyDown(key.getKeyCode())){
+                return key.getAction();
+            }
+        }
+        return Action.IDLE;
     }
 
 }

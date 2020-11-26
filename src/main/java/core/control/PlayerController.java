@@ -34,10 +34,29 @@ public class PlayerController {
     }
 
     private void interact(){
+        System.out.println("c'est pas un sout promis ");
         System.out.println("I Interacted on (" + joueur.getX() + "/" + joueur.getY() + ")");
     }
 
-    public Action onKeyPressed(KeyCode code) {
-        return InteractKey.getAction(code);
+    public void doAction(Action action) {
+        switch (action){
+            case UP:
+            case DOWN:
+            case LEFT:
+            case RIGHT:
+                move(action);
+                break;
+            case END:
+                //end it all :)
+                // see how to get the isRunning var of the GL
+                break;
+            case INTERACT:
+                interact();
+                break;
+            case IDLE:
+            default:
+                //do ntg
+                break;
+        }
     }
 }

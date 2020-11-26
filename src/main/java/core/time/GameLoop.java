@@ -29,10 +29,14 @@ public abstract class GameLoop extends AnimationTimer {
         // var  = (float) ((l - lastFrame) / 1e9)
         // lastFrame = l;
         // tick var
-        tick((float) ((l - lastFrame) / 1e9));
+        try {
+            tick((float) ((l - lastFrame) / 1e9));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         lastFrame = l;
     }
 
     // Injection
-    public abstract void tick(float elapsedSec);
+    public abstract void tick(float elapsedSec) throws InterruptedException;
 }
