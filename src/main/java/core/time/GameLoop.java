@@ -24,19 +24,12 @@ public abstract class GameLoop extends AnimationTimer {
 
     @Override
     public void handle(long l) {
-        duration = l/1e9; // convert from nano seconds
-        // if not working
-        // var  = (float) ((l - lastFrame) / 1e9)
-        // lastFrame = l;
-        // tick var
-        try {
-            tick((float) ((l - lastFrame) / 1e9));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(l - lastFrame >= 30_000_000){
+            tick();
+            lastFrame = l;
         }
-        lastFrame = l;
     }
 
     // Injection
-    public abstract void tick(float elapsedSec) throws InterruptedException;
+    public abstract void tick();
 }

@@ -42,11 +42,11 @@ public class MainController implements Initializable {
 
         gameLoop = new GameLoop() {
             @Override
-            public void tick(float elapsedSec) throws InterruptedException {
+            public void tick() {
                 // TODO Game Logic aka movement/collision/physics taking care of elapsedSec
 
                 playerController.doAction(KeyBinder.getCurrentAction());
-                // Thread.sleep(0, (int) elapsedSec);
+
                 renderer.render();
             }
         };
