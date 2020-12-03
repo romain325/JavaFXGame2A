@@ -7,6 +7,7 @@ public class PlayerController {
     private final Joueur joueur;
 
     private static byte velocity = 5;
+    private static long lastInteraction = 0;
 
     public PlayerController(Joueur j){
         this.joueur = j;
@@ -34,8 +35,17 @@ public class PlayerController {
     }
 
     private void interact(){
-        System.out.println("c'est pas un sout promis ");
-        System.out.println("I Interacted on (" + joueur.getX() + "/" + joueur.getY() + ")");
+        //Verif call rate with delay
+        if(System.currentTimeMillis() - lastInteraction < 200){
+            return;
+        }
+
+        // Set new lastInterTime
+        lastInteraction = System.currentTimeMillis();
+
+        // Code
+        // System.out.println("I Interacted on (" + joueur.getX() + "/" + joueur.getY() + ")");
+
     }
 
     public void doAction(Action action) {

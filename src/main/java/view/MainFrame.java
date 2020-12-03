@@ -1,5 +1,6 @@
 package main.java.view;
 
+import com.sun.glass.ui.View;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,25 +8,54 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.core.control.KeyBinder;
 
+import java.io.IOException;
+import java.util.Map;
+
 public class MainFrame extends Application {
+    private static Stage rootStage;
+    public static final int WIDTH = 700;
+    public static final int HEIGHT = 700;
+    protected static final Map<String, String> VIEWS = Map.of("MainCanvas", "/Vues/MainCanvas.fxml", "StartPage", "/Vues/StartPage.fxml");
+
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Vues/MainCanvas.fxml"));
-        Scene currentScene = new Scene(root, 700, 700);
-        setupFixedSize(stage,700,700); // CHANGE TO VAR
+    public void start(Stage stage){
+        rootStage = stage;
 
-        // setup KeyListener by passing the scene
-        KeyBinder.initContext(currentScene);
+        setupFixedSize(rootStage); // CHANGE TO VAR
 
-        stage.setTitle("MainFrame");
-        stage.setScene(currentScene);
-        stage.show();
+        switchScene("StartPage", false);
+
+        rootStage.setTitle("SuperJeu");
+
+        rootStage.show();
     }
 
-    private void setupFixedSize(Stage stage,int height, int width){
-        stage.setMinHeight(height);
-        stage.setMaxHeight(height);
-        stage.setMinWidth(width);
-        stage.setMaxWidth(width);
+    public static void switchScene(String name, boolean listening){
+        Parent root = null;
+
+        root = getView(name);
+
+        Scene currentScene = new Scene(root, WIDTH, HEIGHT);
+
+        // setup keyListener
+        if(listening){
+            KeyBinder.initContext(currentScene);
+        }
+
+        rootStage.setScene(currentScene);
+    }
+
+    protected static Parent getView(String name) {
+        String val = (VIEWS.get(name) == null) ? VIEWS.get("StartPage") : VIEWS.get(name);
+        try {
+            return FXMLLoader.load(MainFrame.class.getResource(val));
+        } catch (IOException e) { return null; }
+    }
+
+    private void setupFixedSize(Stage stage){
+        stage.setMinHeight(MainFrame.HEIGHT);
+        stage.setMaxHeight(MainFrame.HEIGHT);
+        stage.setMinWidth(MainFrame.WIDTH);
+        stage.setMaxWidth(MainFrame.WIDTH);
     }
 }
