@@ -5,28 +5,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import main.java.core.control.InteractKey;
 import main.java.core.control.KeyBinder;
 import main.java.core.control.PlayerController;
 import main.java.core.personnage.Joueur;
 import main.java.core.time.GameLoop;
-import main.java.view.MainFrame;
 import main.java.view.renderer.CanvasRenderer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainCanvas implements Initializable {
+public class MainController implements Initializable {
     @FXML
     private Canvas gameCanvas;
     @FXML
-    private Pane root;
+    private AnchorPane root;
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
     private KeyBinder keyBinder;
-
     // CHANGER POUR LE VRAI J
     private PlayerController playerController = new PlayerController(new Joueur("Pedro"));
 
@@ -58,7 +55,7 @@ public class MainCanvas implements Initializable {
     }
 
     protected void initElements() throws Exception {
-        gameCanvas.setHeight(MainFrame.HEIGHT);
-        gameCanvas.setWidth(MainFrame.WIDTH);
+        gameCanvas.setHeight(700); // TODO use the vars
+        gameCanvas.setWidth(700);
     }
 }
