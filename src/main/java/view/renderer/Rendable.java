@@ -1,8 +1,12 @@
 package main.java.view.renderer;
 
+import javafx.scene.canvas.GraphicsContext;
+
 public interface Rendable extends Comparable<Rendable> {
     int getZindex();
-    void render();
+    int getHeight();
+    int getWidth();
+    void render(GraphicsContext context);
 
     @Override
     default int compareTo(Rendable rendable){

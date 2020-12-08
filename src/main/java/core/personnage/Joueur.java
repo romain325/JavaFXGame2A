@@ -15,7 +15,6 @@ public class Joueur extends Personnage {
     public void setCoord(int x, int y){
         setX(x);
         setY(y);
-        System.out.println("("+this.getX()+"/"+this.getY()+")");
     }
 
     @Override

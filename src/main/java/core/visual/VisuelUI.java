@@ -1,5 +1,6 @@
 package main.java.core.visual;
 
+import javafx.scene.canvas.GraphicsContext;
 import main.java.view.renderer.ZIndex;
 
 public class VisuelUI extends Visuel{
@@ -9,7 +10,7 @@ public class VisuelUI extends Visuel{
     }
 
     @Override
-    public void render() {
+    public void render(GraphicsContext context) {
         //render
     }
 }

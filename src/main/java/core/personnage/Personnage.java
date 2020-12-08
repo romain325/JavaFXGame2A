@@ -28,5 +28,7 @@ public class Personnage {
         return visual.getCoordY();
     }
 
-
+    public VisuelPersonnage getVisual(){
+        return this.visual;
+    }
 }

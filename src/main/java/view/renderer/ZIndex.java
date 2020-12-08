@@ -12,13 +12,16 @@ public enum ZIndex {
 
     private int zindex;
     private boolean hasCollision;
+
     ZIndex(int zindex, boolean hasCollision){
         this.zindex = zindex;
         this.hasCollision = hasCollision;
     }
+
     public int getIndex() {
         return zindex;
     }
+
     public boolean hasCollision() {
         return hasCollision;
     }

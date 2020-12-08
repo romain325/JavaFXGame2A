@@ -6,4 +6,6 @@ public class PNJ extends Personnage {
     public PNJ(String nom) {
         super(nom);
     }
+
+
 }

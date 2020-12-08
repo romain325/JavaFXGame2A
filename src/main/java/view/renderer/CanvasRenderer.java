@@ -33,7 +33,7 @@ public class CanvasRenderer {
             context.drawImage(background, 0, 0);
         }
         for (Rendable elem: elements) {
-            elem.render();
+            elem.render(context);
         }
         context.restore();
     }
@@ -41,7 +41,8 @@ public class CanvasRenderer {
     public void setBackground(Image background) {
         this.background = background;
     }
+
     public void addNewElement(Rendable element) {
-        //elements.add(element);
+        elements.add(element);
     }
 }

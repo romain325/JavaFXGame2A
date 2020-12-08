@@ -17,10 +17,10 @@ public class PlayerController {
         int futurX = joueur.getX(), futurY = joueur.getY();
         switch (d){
             case UP:
-                futurY += velocity;
+                futurY -= velocity;
                 break;
             case DOWN:
-                futurY -= velocity;
+                futurY += velocity;
                 break;
             case RIGHT:
                 futurX += velocity;
@@ -68,5 +68,9 @@ public class PlayerController {
                 //do ntg
                 break;
         }
+    }
+
+    public void setVelocity(byte velocity){
+        PlayerController.velocity = velocity;
     }
 }

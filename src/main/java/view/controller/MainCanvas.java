@@ -15,7 +15,7 @@ import main.java.view.renderer.CanvasRenderer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainCanvas implements Initializable {
     @FXML
     private Canvas gameCanvas;
     @FXML
@@ -25,7 +25,8 @@ public class MainController implements Initializable {
     private CanvasRenderer renderer;
     private KeyBinder keyBinder;
     // CHANGER POUR LE VRAI J
-    private PlayerController playerController = new PlayerController(new Joueur("Pedro"));
+    private Joueur player = new Joueur("Pedro");
+    private PlayerController playerController = new PlayerController(player);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,6 +38,7 @@ public class MainController implements Initializable {
         }
         renderer = new CanvasRenderer(gameCanvas);
         renderer.setBackground(new Image(getClass().getResourceAsStream("/img/map.png")));
+        renderer.addNewElement(player.getVisual());
 
         // TODO Use other renderer to add to the main Canvas
 
