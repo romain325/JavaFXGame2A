@@ -5,11 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import main.java.core.control.InteractKey;
 import main.java.core.control.KeyBinder;
 import main.java.core.control.PlayerController;
 import main.java.core.personnage.Joueur;
-import main.java.core.time.GameLoop;
+import main.java.core.logic.GameLoop;
 import main.java.view.renderer.CanvasRenderer;
 
 import java.net.URL;
