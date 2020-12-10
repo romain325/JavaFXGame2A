@@ -1,4 +1,4 @@
-package main.java.core.time;
+package main.java.core.logic;
 
 import javafx.animation.AnimationTimer;
 
