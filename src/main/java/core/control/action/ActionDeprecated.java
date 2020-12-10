@@ -1,6 +1,6 @@
-package main.java.core.control;
+package main.java.core.control.action;
 
-public enum Action {
+public enum ActionDeprecated {
     UP,
     DOWN,
     LEFT,

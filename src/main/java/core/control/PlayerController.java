@@ -1,6 +1,10 @@
 package main.java.core.control;
 
-import javafx.scene.input.KeyCode;
+import main.java.core.control.action.Action;
+import main.java.core.control.action.ActionDeprecated;
+import main.java.core.control.action.Interact;
+import main.java.core.control.action.movement.MovementAction;
+import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 
 public class PlayerController {
@@ -13,7 +17,7 @@ public class PlayerController {
         this.joueur = j;
     }
 
-    private void move(Action d){
+    private void move(ActionDeprecated d){
         int futurX = joueur.getX(), futurY = joueur.getY();
         switch (d){
             case UP:
@@ -48,13 +52,24 @@ public class PlayerController {
 
     }
 
-    public void doAction(Action action) {
-        switch (action){
+    public void doAction(Action action){
+        if(action instanceof MovementAction){
+            ((MovementAction) action).move(new Vector(0,0),1);
+            return;
+        }
+        if (action instanceof Interact){
+            ((Interact) action).interact(new Vector(0,0));
+            return;
+        }
+    }
+
+    public void doAction(ActionDeprecated actionDeprecated) {
+        switch (actionDeprecated){
             case UP:
             case DOWN:
             case LEFT:
             case RIGHT:
-                move(action);
+                move(actionDeprecated);
                 break;
             case END:
                 //end it all :)

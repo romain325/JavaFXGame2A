@@ -1,6 +1,5 @@
 package main.java.view;
 
-import com.sun.glass.ui.View;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +14,6 @@ public class MainFrame extends Application {
     private static Stage rootStage;
     public static final int WIDTH = 700;
     public static final int HEIGHT = 700;
-    protected static final Map<String, String> VIEWS = Map.of("MainCanvas", "/Vues/MainCanvas.fxml", "StartPage", "/Vues/StartPage.fxml");
 
     @Override
     public void start(Stage stage){
@@ -23,17 +21,17 @@ public class MainFrame extends Application {
 
         setupFixedSize(rootStage); // CHANGE TO VAR
 
-        switchScene("StartPage", false);
+        switchScene(FRAME.START_PAGE, false);
 
         rootStage.setTitle("SuperJeu");
 
         rootStage.show();
     }
 
-    public static void switchScene(String name, boolean listening){
+    public static void switchScene(FRAME frame, boolean listening){
         Parent root = null;
 
-        root = getView(name);
+        root = getView(frame);
 
         Scene currentScene = new Scene(root, WIDTH, HEIGHT);
 
@@ -45,12 +43,12 @@ public class MainFrame extends Application {
         rootStage.setScene(currentScene);
     }
 
-    protected static Parent getView(String name) {
-        String val = (VIEWS.get(name) == null) ? VIEWS.get("StartPage") : VIEWS.get(name);
+    protected static Parent getView(FRAME frame) {
         try {
-            return FXMLLoader.load(MainFrame.class.getResource(val));
+            return FXMLLoader.load(MainFrame.class.getResource(frame.getLink()));
         } catch (IOException e) { return null; }
     }
+
 
     private void setupFixedSize(Stage stage){
         stage.setMinHeight(MainFrame.HEIGHT);

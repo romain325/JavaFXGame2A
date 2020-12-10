@@ -17,6 +17,16 @@ public abstract class Visuel implements IVisuel{
         this.renderType = renderType;
     }
 
+    @Override
+    public int getHeight() {
+        return Height;
+    }
+
+    @Override
+    public int getWidth() {
+        return Width;
+    }
+
     public int getCoordX() {
         return CoordX;
     }

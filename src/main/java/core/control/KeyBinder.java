@@ -3,6 +3,7 @@ package main.java.core.control;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import main.java.core.control.action.ActionDeprecated;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -46,14 +47,18 @@ public class KeyBinder {
     public static boolean isKeyDown(KeyCode code){
         return keyDown.contains(code);
     }
+    
 
-    public static Action getCurrentAction(){
+    public static ActionDeprecated getCurrentAction(){
+
         for (InteractKey key: InteractKey.values()) {
             if (isKeyDown(key.getKeyCode())){
                 return key.getAction();
             }
         }
-        return Action.IDLE;
+
+
+        return ActionDeprecated.IDLE;
     }
 
 }

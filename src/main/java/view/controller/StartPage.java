@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import main.java.view.FRAME;
 import main.java.view.MainFrame;
 
 import java.net.URL;
@@ -22,7 +23,7 @@ public class StartPage implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         labelTxt.textProperty().bindBidirectional(fieldTxt.textProperty());
         changeScene.setOnAction(actionEvent -> {
-            MainFrame.switchScene("MainCanvas", true);
+            MainFrame.switchScene(FRAME.OUTSIDE_MAIN, true);
         });
     }
 }
