@@ -6,14 +6,21 @@ import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 
 public abstract class MovementAction extends Action {
-    public MovementAction(Joueur player) {
+    public MovementAction(PlayerController player) {
         super(player);
     }
 
-    public abstract void move(int velocity);
+    public void moveTo(Vector newPos){
+        this.player.getJoueur().setCoord(newPos);
+    }
+    protected abstract Vector getMovementVector(int velocity);
 
     @Override
     public void interact() {
-        move(this.player.getSpeed());
+        Vector finalPos = player.getJoueur().getPosition().sum(this.getMovementVector(this.player.getJoueur().getSpeed()));
+        if(player.getCollisionner().isOutOfMapLimit(finalPos, player.getJoueur().getVisual())){
+            return;
+        }
+        moveTo(finalPos);
     }
 }

@@ -8,7 +8,7 @@ public class Interact extends Action {
 
     private static long lastInteraction = 0;
 
-    public Interact(Joueur player) {
+    public Interact(PlayerController player) {
         super(player);
     }
 
@@ -23,7 +23,7 @@ public class Interact extends Action {
         lastInteraction = System.currentTimeMillis();
 
         // Code
-        System.out.println("I Interacted on (" + this.player.getX() + "/" + this.player.getY() + ")");
+        System.out.println("I Interacted on (" + this.player.getJoueur().getX() + "/" + this.player.getJoueur().getY() + ")");
 
     }
 

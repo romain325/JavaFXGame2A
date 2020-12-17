@@ -1,13 +1,11 @@
 package main.java.core.control.action;
 
 import main.java.core.control.PlayerController;
-import main.java.core.logic.movement.Vector;
-import main.java.core.personnage.Joueur;
 
 public abstract class Action {
-    protected final Joueur player;
+    protected final PlayerController player;
 
-    public Action(Joueur player){
+    public Action(PlayerController player){
         this.player = player;
     }
 

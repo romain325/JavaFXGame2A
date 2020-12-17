@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import main.java.core.control.InteractKey;
 import main.java.core.control.KeyBinder;
 import main.java.core.control.PlayerController;
+import main.java.core.logic.Collisionner;
 import main.java.core.logic.GameLoop;
 import main.java.core.personnage.Joueur;
 import main.java.core.visual.map.Map;
@@ -29,7 +30,7 @@ public class MainCanvas implements Initializable {
     private CanvasRenderer renderer;
     // CHANGER POUR LE VRAI J
     private Joueur player = new Joueur("Pedro");
-    private PlayerController playerController = new PlayerController(player);
+    private PlayerController playerController;
     private Map gameMap;
 
     @Override
@@ -42,7 +43,7 @@ public class MainCanvas implements Initializable {
         }
 
         gameMap = new Map(new Image(getClass().getResourceAsStream("/img/map.png")), new LinkedList<>(Arrays.asList(player.getVisual())));
-
+        playerController = new PlayerController(player, new Collisionner(gameMap, (int)gameCanvas.getWidth(), (int)gameCanvas.getHeight()));
         renderer = new CanvasRenderer(gameCanvas, gameMap);
 
         // TODO Use other renderer to add to the main Canvas

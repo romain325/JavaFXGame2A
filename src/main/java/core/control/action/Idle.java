@@ -5,7 +5,7 @@ import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 
 public class Idle extends Action {
-    public Idle(Joueur player) {
+    public Idle(PlayerController player) {
         super(player);
     }
 

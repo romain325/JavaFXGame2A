@@ -29,8 +29,8 @@ public enum InteractKey {
         return this.code;
     }
 
-    public Action getAction(Joueur player) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        return (Action) this.action.getConstructor(Joueur.class).newInstance(player);
+    public Action getAction(PlayerController player) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        return (Action) this.action.getConstructor(PlayerController.class).newInstance(player);
     }
 
     public static InteractKey getInteractKey(KeyCode code){

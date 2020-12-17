@@ -36,4 +36,9 @@ public class Vector {
         return new Vector(pos.getX() - getX(), pos.getY() - getY());
     }
     public static Vector sub(Vector vector, Vector subTo){ return vector.subTo(subTo); }
+
+    @Override
+    public String toString() {
+        return "("+this.getX()+","+this.getY()+")";
+    }
 }

@@ -6,7 +6,7 @@ import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 
 public class End extends Action {
-    public End(Joueur player) {
+    public End(PlayerController player) {
         super(player);
     }
 

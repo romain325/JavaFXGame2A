@@ -53,4 +53,5 @@ public abstract class Visuel implements IVisuel{
     public Vector getPosition() {
         return position;
     }
+
 }

@@ -1,5 +1,6 @@
 package main.java.core.personnage;
 
+import main.java.core.logic.movement.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
 public class Personnage {
@@ -27,6 +28,8 @@ public class Personnage {
     public int getY(){
         return visual.getCoordY();
     }
+
+    public Vector getPosition() {return visual.getPosition();}
 
     public VisuelPersonnage getVisual(){
         return this.visual;

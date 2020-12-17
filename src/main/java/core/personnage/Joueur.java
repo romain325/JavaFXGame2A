@@ -1,6 +1,7 @@
 package main.java.core.personnage;
 
 import main.java.core.item.Item;
+import main.java.core.logic.movement.Vector;
 
 import java.util.Collection;
 
@@ -21,6 +22,10 @@ public class Joueur extends Personnage {
     public void setCoord(int x, int y){
         setX(x);
         setY(y);
+    }
+
+    public void setCoord(Vector pos){
+        setCoord(pos.getX(), pos.getY());
     }
 
     @Override

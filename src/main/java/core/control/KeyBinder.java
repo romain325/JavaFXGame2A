@@ -51,9 +51,9 @@ public class KeyBinder {
         return keyDown.contains(code);
     }
 
-    public static Action getCurrentAction(Joueur player) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        if (keyDown.isEmpty()) return new Idle(player);
-        return InteractKey.getInteractKey((KeyCode) keyDown.toArray()[0]).getAction(player);
+    public static Action getCurrentAction(PlayerController playerController) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        if (keyDown.isEmpty()) return new Idle(playerController);
+        return InteractKey.getInteractKey((KeyCode) keyDown.toArray()[0]).getAction(playerController);
     }
 
 }

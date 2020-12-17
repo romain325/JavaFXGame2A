@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Map {
 
-    private final Collisionner collisionner = new Collisionner();
     private final List<Visuel> elements;
     private final Image background;
 

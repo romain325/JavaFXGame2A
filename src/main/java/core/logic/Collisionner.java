@@ -1,16 +1,26 @@
 package main.java.core.logic;
 
-import main.java.core.visual.Visuel;
+import main.java.core.logic.movement.Vector;
+import main.java.core.visual.VisuelPersonnage;
+import main.java.core.visual.map.Map;
 
 public class Collisionner {
+    private final Map map;
+    private final int width;
+    private final int height;
 
-    /**
-     * Return the number of pixel allowed for the next movement
-     * @param visuel element to test the interaction
-     * @return number of pixel allowed for movement
-     */
-    public int getAllowedMove(Visuel visuel){
+    public Collisionner(Map map, int w, int h){
+        this.map = map;
+        this.width = w;
+        this.height = h;
+    }
 
-        return 1;
+    public boolean isOutOfMapLimit(Vector nextPos, VisuelPersonnage joueur){
+        return (
+                nextPos.getX() + joueur.getWidth() > width ||
+                nextPos.getX() < 0 ||
+                nextPos.getY() + joueur.getHeight()*3 > height ||
+                nextPos.getY() < 0
+        );
     }
 }
