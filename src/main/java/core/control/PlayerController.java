@@ -1,10 +1,5 @@
 package main.java.core.control;
 
-import main.java.core.control.action.Action;
-import main.java.core.control.action.ActionDeprecated;
-import main.java.core.control.action.Interact;
-import main.java.core.control.action.movement.MovementAction;
-import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 
 public class PlayerController {

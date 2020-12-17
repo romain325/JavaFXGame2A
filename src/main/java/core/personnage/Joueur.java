@@ -31,7 +31,7 @@ public class Joueur extends Personnage {
 
     @Override
     public void setY(int y) {
-        //TODO Add collision Check
+        //TODO Add collision Check, maybve not here
         super.setY(y);
     }
 
