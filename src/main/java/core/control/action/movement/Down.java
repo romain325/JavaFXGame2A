@@ -1,10 +1,15 @@
 package main.java.core.control.action.movement;
 
 import main.java.core.logic.movement.Vector;
+import main.java.core.personnage.Joueur;
 
-public class Down implements MovementAction {
+public class Down extends MovementAction {
+    public Down(Joueur player) {
+        super(player);
+    }
+
     @Override
-    public void move(Vector movement, int velocity) {
-        //do en bas
+    public void move(int velocity) {
+        this.player.setY(player.getY() + velocity);
     }
 }

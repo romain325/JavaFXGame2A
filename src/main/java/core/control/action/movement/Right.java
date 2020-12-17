@@ -1,10 +1,15 @@
 package main.java.core.control.action.movement;
 
 import main.java.core.logic.movement.Vector;
+import main.java.core.personnage.Joueur;
 
-public class Right implements MovementAction {
+public class Right extends MovementAction {
+    public Right(Joueur player) {
+        super(player);
+    }
+
     @Override
-    public void move(Vector movement, int velocity) {
-
+    public void move(int velocity) {
+        this.player.setX(player.getX() + velocity);
     }
 }

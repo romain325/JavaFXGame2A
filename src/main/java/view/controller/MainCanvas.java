@@ -8,8 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import main.java.core.control.InteractKey;
 import main.java.core.control.KeyBinder;
 import main.java.core.control.PlayerController;
+import main.java.core.logic.GameLoop;
 import main.java.core.personnage.Joueur;
-import main.java.core.time.GameLoop;
 import main.java.core.visual.map.Map;
 import main.java.view.renderer.CanvasRenderer;
 
@@ -27,7 +27,6 @@ public class MainCanvas implements Initializable {
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
-    private KeyBinder keyBinder;
     // CHANGER POUR LE VRAI J
     private Joueur player = new Joueur("Pedro");
     private PlayerController playerController = new PlayerController(player);
@@ -53,7 +52,7 @@ public class MainCanvas implements Initializable {
             public void tick() {
                 // TODO Game Logic aka movement/collision/physics taking care of elapsedSec
 
-                playerController.doAction(KeyBinder.getCurrentAction());
+                playerController.doAction();
 
                 renderer.render();
             }

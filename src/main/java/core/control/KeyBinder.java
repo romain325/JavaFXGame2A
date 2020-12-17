@@ -3,8 +3,11 @@ package main.java.core.control;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import main.java.core.control.action.ActionDeprecated;
+import main.java.core.control.action.Action;
+import main.java.core.control.action.Idle;
+import main.java.core.personnage.Joueur;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,18 +50,10 @@ public class KeyBinder {
     public static boolean isKeyDown(KeyCode code){
         return keyDown.contains(code);
     }
-    
 
-    public static ActionDeprecated getCurrentAction(){
-
-        for (InteractKey key: InteractKey.values()) {
-            if (isKeyDown(key.getKeyCode())){
-                return key.getAction();
-            }
-        }
-
-
-        return ActionDeprecated.IDLE;
+    public static Action getCurrentAction(Joueur player) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        if (keyDown.isEmpty()) return new Idle(player);
+        return InteractKey.getInteractKey((KeyCode) keyDown.toArray()[0]).getAction(player);
     }
 
 }

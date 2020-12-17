@@ -7,9 +7,15 @@ import java.util.Collection;
 public class Joueur extends Personnage {
     private Collection<Item> inventaire;
     private boolean soupcon = false;
+    private int speed;
+
+    public Joueur(String nom, int speed) {
+        super(nom);
+        this.speed = speed;
+    }
 
     public Joueur(String nom) {
-        super(nom);
+        this(nom,5);
     }
 
     public void setCoord(int x, int y){
@@ -35,6 +41,10 @@ public class Joueur extends Personnage {
 
     public void setSoupcon(boolean soupcon) {
         this.soupcon = soupcon;
+    }
+
+    public int getSpeed(){
+        return this.speed;
     }
 
 }

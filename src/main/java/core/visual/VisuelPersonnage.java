@@ -1,6 +1,7 @@
 package main.java.core.visual;
 
 import javafx.scene.canvas.GraphicsContext;
+import main.java.core.logic.movement.Vector;
 import main.java.view.renderer.ZIndex;
 
 public class VisuelPersonnage extends Visuel {

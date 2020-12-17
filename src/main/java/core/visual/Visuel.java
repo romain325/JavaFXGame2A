@@ -1,19 +1,18 @@
 package main.java.core.visual;
 
+import main.java.core.logic.movement.Vector;
 import main.java.view.renderer.ZIndex;
 
 public abstract class Visuel implements IVisuel{
-    private int CoordX;
-    private int CoordY;
     private final int Height;
     private final int Width;
+    private final Vector position;
     private ZIndex renderType;
 
     public Visuel(int x, int y, int h, int w, ZIndex renderType){
-        this.CoordX = x;
-        this.CoordY = y;
         this.Height = h;
         this.Width  = w;
+        this.position = new Vector(x,y);
         this.renderType = renderType;
     }
 
@@ -28,19 +27,19 @@ public abstract class Visuel implements IVisuel{
     }
 
     public int getCoordX() {
-        return CoordX;
+        return position.getX();
     }
 
     public void setCoordX(int coordX) {
-        CoordX = coordX;
+        position.setX(coordX);
     }
 
     public int getCoordY() {
-        return CoordY;
+        return position.getY();
     }
 
     public void setCoordY(int coordY) {
-        CoordY = coordY;
+        position.setY(coordY);
     }
 
     public boolean hasCollision() {
@@ -49,5 +48,9 @@ public abstract class Visuel implements IVisuel{
 
     public int getZindex(){
         return this.renderType.getIndex();
+    }
+
+    public Vector getPosition() {
+        return position;
     }
 }
