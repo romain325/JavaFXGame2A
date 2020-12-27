@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.java.view.controller.StartPage">
 
-<FlowPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.view.controller.StartPage">
+    <Button fx:id="startEverything">Somebody There ?</Button>
 
+    <VBox fx:id="firstText">
+        <Label>Hello ...</Label>
+        <Label>... you</Label>
+        <Label>What's your name again ??</Label>
+        <TextField fx:id="fieldTxt" />
+    </VBox>
 
-    <TextField fx:id="fieldTxt" />
-    <Label>Hello buddy</Label>
-    <Label fx:id="labelTxt" />
-    <Button fx:id="changeScene">Hehe</Button>
+    <Button fx:id="validName"/>
 
-</FlowPane>
+    <VBox fx:id="secondText">
+        <Label>Ah yes of course! </Label>
+        <Label>It was just to make sure it was you .. ahah ..</Label>
+        <Label>Anyway ! let's go back to our little world !</Label>
+        <Button fx:id="changeScene">Let's go to the wonderful world!</Button>
+    </VBox>
+
+</VBox>
