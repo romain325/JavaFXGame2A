@@ -25,6 +25,10 @@ public class Vector {
         this.y = y;
     }
 
+    public Vector invert() {
+        return new Vector(-this.getX(), -this.getY());
+    }
+
     public Vector sum(Vector movement){
         return new Vector(getX() + movement.getX(), getY() + movement.getY());
     }
@@ -36,6 +40,42 @@ public class Vector {
         return new Vector(pos.getX() - getX(), pos.getY() - getY());
     }
     public static Vector sub(Vector vector, Vector subTo){ return vector.subTo(subTo); }
+
+    public void copy(Vector vector){
+        this.setX(vector.getX());
+        this.setY(vector.getY());
+    }
+    public void copyTo(Vector vector){
+        vector.setX(this.getX());
+        vector.setY(this.getY());
+    }
+
+    public boolean isIn(Vector minVector, Vector maxVector){
+        return (
+                this.getX() < minVector.getX() ||
+                this.getX() > maxVector.getX() ||
+                this.getY() < minVector.getY() ||
+                this.getY() > maxVector.getY()
+                );
+    }
+    public boolean isIn(Vector maxVector){
+        return this.isIn(new Vector(0,0), maxVector);
+    }
+
+    public boolean isIn(Vector minVector, Vector maxVector, int width, int height){
+        return (
+                this.getX() < minVector.getX() ||
+                this.getX() + width > maxVector.getX() ||
+                this.getY() < minVector.getY() ||
+                this.getY() + height > maxVector.getY()
+        );
+    }
+    public boolean isIn(Vector maxVector, int width, int height){
+        return this.isIn(new Vector(0,0), maxVector, width, height);
+    }
+
+
+
 
     @Override
     public String toString() {

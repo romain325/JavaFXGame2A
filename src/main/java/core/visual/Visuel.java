@@ -54,4 +54,8 @@ public abstract class Visuel implements IVisuel{
         return position;
     }
 
+    public void setPosition(Vector pos){
+        position.copy(pos);
+    }
+
 }

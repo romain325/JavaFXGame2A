@@ -1,8 +1,8 @@
 package main.java.core.control.action;
 
 import main.java.core.control.PlayerController;
-import main.java.core.logic.movement.Vector;
-import main.java.core.personnage.Joueur;
+
+import javax.management.InstanceNotFoundException;
 
 public class Interact extends Action {
 
@@ -23,8 +23,12 @@ public class Interact extends Action {
         lastInteraction = System.currentTimeMillis();
 
         // Code
-        System.out.println("I Interacted on (" + this.player.getJoueur().getX() + "/" + this.player.getJoueur().getY() + ")");
-
+        try {
+            player.getCollisionner().getInteractiveObject(player.getJoueur().getVisual()).interact();
+        } catch (InstanceNotFoundException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
     }
 
 }

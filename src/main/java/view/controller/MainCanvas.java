@@ -5,19 +5,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import main.java.core.control.InteractKey;
-import main.java.core.control.KeyBinder;
+import javafx.scene.paint.Color;
 import main.java.core.control.PlayerController;
 import main.java.core.logic.Collisionner;
 import main.java.core.logic.GameLoop;
+import main.java.core.logic.Interactive;
 import main.java.core.personnage.Joueur;
+import main.java.core.personnage.PNJ;
+import main.java.core.personnage.pnjs.Andre;
+import main.java.core.visual.Visuel;
 import main.java.core.visual.map.Map;
+import main.java.view.MainFrame;
 import main.java.view.renderer.CanvasRenderer;
 
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainCanvas implements Initializable {
@@ -28,21 +32,25 @@ public class MainCanvas implements Initializable {
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
-    // CHANGER POUR LE VRAI J
+    private List<Visuel> mapElements = new LinkedList<>();
+    private List<Interactive> interactivesElements = new LinkedList<>();
+
     private Joueur player = new Joueur("Pedro");
     private PlayerController playerController;
+
     private Map gameMap;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            initElements();
+            initMap();
+            initMapElements();
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        gameMap = new Map(new Image(getClass().getResourceAsStream("/img/map.png")), new LinkedList<>(Arrays.asList(player.getVisual())));
+        gameMap = new Map(new Image(getClass().getResourceAsStream("/img/map.png")), mapElements, interactivesElements);
         playerController = new PlayerController(player, new Collisionner(gameMap, (int)gameCanvas.getWidth(), (int)gameCanvas.getHeight()));
         renderer = new CanvasRenderer(gameCanvas, gameMap);
 
@@ -62,8 +70,21 @@ public class MainCanvas implements Initializable {
         gameLoop.start();
     }
 
-    protected void initElements() throws Exception {
-        gameCanvas.setHeight(700); // TODO use the vars
-        gameCanvas.setWidth(700);
+    protected void initMap() throws Exception {
+        gameCanvas.setHeight(MainFrame.HEIGHT);
+        gameCanvas.setWidth(MainFrame.WIDTH);
+    }
+
+    protected void initMapElements() {
+        // Add player to render
+        player.getVisual().setDebugMode(Color.RED);
+        mapElements.add(player.getVisual());
+
+        // Add pnj
+        Andre andre = new Andre(true);
+        mapElements.add(andre.getVisual());
+        interactivesElements.add(andre);
+
+        // Add Object
     }
 }

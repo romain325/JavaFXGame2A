@@ -1,5 +1,6 @@
 package main.java.core.personnage;
 
+import javafx.scene.paint.Color;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
@@ -29,7 +30,10 @@ public class Personnage {
         return visual.getCoordY();
     }
 
+    public String getNom() { return this.nom; }
+
     public Vector getPosition() {return visual.getPosition();}
+    public void setPosition(Vector vector) { visual.setPosition(vector);}
 
     public VisuelPersonnage getVisual(){
         return this.visual;

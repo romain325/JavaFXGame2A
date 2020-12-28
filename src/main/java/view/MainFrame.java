@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.java.core.control.KeyBinder;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class MainFrame extends Application {
 
         switchScene(FRAME.START_PAGE, false);
 
+        rootStage.initStyle(StageStyle.UNDECORATED);
         rootStage.setTitle("SuperJeu");
 
         rootStage.show();
