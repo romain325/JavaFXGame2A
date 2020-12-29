@@ -1,12 +1,11 @@
 package main.java.core.personnage;
 
-import javafx.scene.paint.Color;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
 public class Personnage {
-    private String nom;
-    private VisuelPersonnage visual;
+    private final String nom;
+    protected VisuelPersonnage visual;
 
 
     public Personnage(String nom){
@@ -32,7 +31,7 @@ public class Personnage {
 
     public String getNom() { return this.nom; }
 
-    public Vector getPosition() {return visual.getPosition();}
+    public Vector getPosition() { return visual.getPosition();}
     public void setPosition(Vector vector) { visual.setPosition(vector);}
 
     public VisuelPersonnage getVisual(){

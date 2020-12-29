@@ -1,13 +1,15 @@
 package main.java.core.visual;
 
 import main.java.core.logic.movement.Vector;
+import main.java.view.renderer.Rendable;
 import main.java.view.renderer.ZIndex;
 
-public abstract class Visuel implements IVisuel{
+public abstract class Visuel implements IVisuel, Rendable {
     private final int Height;
     private final int Width;
     private final Vector position;
     private ZIndex renderType;
+    private boolean isVisible = true;
 
     public Visuel(int x, int y, int h, int w, ZIndex renderType){
         this.Height = h;
@@ -58,4 +60,13 @@ public abstract class Visuel implements IVisuel{
         position.copy(pos);
     }
 
+    @Override
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    @Override
+    public void setVisible(boolean isVisible) {
+        this.isVisible = isVisible;
+    }
 }

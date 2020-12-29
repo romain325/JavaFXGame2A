@@ -23,6 +23,7 @@ public class VisuelPersonnage extends Visuel {
 
     @Override
     public void render(GraphicsContext context) {
+        if(!isVisible()) return;
         if(debugMode){
             context.setStroke(debugColor);
             context.strokeRect(this.getCoordX(),this.getCoordY(),PERSONNAGE_WIDTH,PERSONNAGE_HEIGHT);

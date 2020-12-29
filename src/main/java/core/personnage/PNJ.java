@@ -2,6 +2,7 @@ package main.java.core.personnage;
 
 import main.java.core.logic.Interactive;
 import main.java.core.logic.movement.Vector;
+import main.java.core.visual.sprite.StaticPlayerSprite;
 
 public abstract class PNJ extends Personnage implements Interactive {
     public static int NIVEAU_FOLIE = 0;
@@ -12,16 +13,16 @@ public abstract class PNJ extends Personnage implements Interactive {
 
     public PNJ(String nom, Vector vector) {
         super(nom);
-        this.setPosition(vector);
+        this.visual = new StaticPlayerSprite("/img/char/"+this.getNom()+".png", vector);
     }
 
-    public abstract void dialog();
+    public abstract String getDialog();
 
     @Override
     public void interact() {
         if(isBusy()) return;
         isBusy = true;
-        dialog();
+        System.out.println(getDialog());
         isBusy = false;
     }
 
@@ -38,5 +39,10 @@ public abstract class PNJ extends Personnage implements Interactive {
     @Override
     public boolean isBusy() {
         return isBusy;
+    }
+
+    @Override
+    public boolean isInteractive() {
+        return true;
     }
 }

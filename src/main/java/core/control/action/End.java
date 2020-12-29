@@ -1,5 +1,6 @@
 package main.java.core.control.action;
 
+import javafx.application.Platform;
 import main.java.core.control.InteractKey;
 import main.java.core.control.PlayerController;
 import main.java.core.logic.movement.Vector;
@@ -12,6 +13,6 @@ public class End extends Action {
 
     @Override
     public void interact() {
-
+        Platform.exit();
     }
 }

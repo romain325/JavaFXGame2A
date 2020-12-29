@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import main.java.core.control.PlayerController;
+import main.java.core.item.Item;
 import main.java.core.logic.Collisionner;
 import main.java.core.logic.GameLoop;
 import main.java.core.logic.Interactive;
@@ -86,5 +87,21 @@ public class MainCanvas implements Initializable {
         interactivesElements.add(andre);
 
         // Add Object
+        Item book = new Item("book") {
+            @Override
+            public void interact() {
+                if(!isInteractive()) return;
+
+                consume();
+            }
+
+            @Override
+            public void initialize(URL url, ResourceBundle resourceBundle) {
+                this.setX(100);
+                this.setY(100);
+            }
+        };
+        mapElements.add(book.getVisual());
+        interactivesElements.add(book);
     }
 }
