@@ -2,14 +2,16 @@ package main.java.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.core.control.KeyBinder;
+import main.java.view.controller.Controller;
+import main.java.view.controller.DefaultCanvasController;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class MainFrame extends Application {
     private static Stage rootStage;
@@ -30,11 +32,27 @@ public class MainFrame extends Application {
         rootStage.show();
     }
 
-    public static void switchScene(FRAME frame, boolean listening){
+    public static void switchScene(FRAME frame, boolean listening, Controller controller){
         Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFrame.class.getResource(frame.getLink()));
 
-        root = getView(frame);
+        if(controller != null) {
+            fxmlLoader.setController(controller);
+        }
+        if(frame == FRAME.PLAYABLE_CANVAS && controller == null) throw new IllegalArgumentException("A playable Canvas should have a specified controller");
 
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            fxmlLoader = new FXMLLoader(MainFrame.class.getResource(FRAME.START_PAGE.getLink()));
+            try {
+                root =fxmlLoader.load();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+
+        assert root != null;
         Scene currentScene = new Scene(root, WIDTH, HEIGHT);
 
         // setup keyListener
@@ -45,12 +63,9 @@ public class MainFrame extends Application {
         rootStage.setScene(currentScene);
     }
 
-    protected static Parent getView(FRAME frame) {
-        try {
-            return FXMLLoader.load(MainFrame.class.getResource(frame.getLink()));
-        } catch (IOException e) { return null; }
+    public static void switchScene(FRAME frame, boolean listening){
+        switchScene(frame, listening, null);
     }
-
 
     private void setupFixedSize(Stage stage){
         stage.setMinHeight(MainFrame.HEIGHT);

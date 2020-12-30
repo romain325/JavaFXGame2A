@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import main.java.core.personnage.Joueur;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
 
@@ -21,7 +22,7 @@ import java.sql.Time;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-public class StartPage implements Initializable {
+public class StartPage implements Controller {
     @FXML
     private Button startEverything;
     @FXML
@@ -48,7 +49,7 @@ public class StartPage implements Initializable {
 
         /*BUTTON*/
         changeScene.setOnAction(actionEvent -> {
-            MainFrame.switchScene(FRAME.OUTSIDE_MAIN, true);
+            MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(new Joueur(fieldTxt.getText())));
         });
         startEverything.setOnAction(actionEvent -> showTextProgressively(firstText));
         validName.setOnAction(actionEvent -> showTextProgressively(secondText));

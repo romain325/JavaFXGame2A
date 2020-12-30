@@ -21,8 +21,12 @@ public abstract class Item implements Interactive, Consommable, Initializable {
     protected Visuel visual;
 
     public Item(String nom){
+        this(nom, new StaticItemSprite(0,0,nom));
+    }
+
+    protected Item(String nom, StaticItemSprite sprite){
         this.nom = nom;
-        this.visual = new StaticItemSprite(0,0, this.nom);
+        this.visual = sprite;
         initialize(null,null);
     }
 
@@ -77,8 +81,6 @@ public abstract class Item implements Interactive, Consommable, Initializable {
         isConsumed = true;
         isInteractive = false;
         visual.setVisible(false);
-        this.setX(-120);
-        this.setY(-120);
     }
 
     @Override

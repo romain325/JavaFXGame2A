@@ -1,5 +1,7 @@
 package main.java.core.visual;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import main.java.core.logic.movement.Vector;
 import main.java.view.renderer.Rendable;
 import main.java.view.renderer.ZIndex;
@@ -68,5 +70,9 @@ public abstract class Visuel implements IVisuel, Rendable {
     @Override
     public void setVisible(boolean isVisible) {
         this.isVisible = isVisible;
+    }
+
+    public void debugVision(GraphicsContext context){
+        context.strokeRect(this.getCoordX(),this.getCoordY(),this.getWidth(), this.getHeight());
     }
 }

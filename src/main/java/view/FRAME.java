@@ -2,7 +2,7 @@ package main.java.view;
 
 public enum FRAME {
     START_PAGE("StartPage"),
-    OUTSIDE_MAIN("MainCanvas")
+    PLAYABLE_CANVAS("PlayableCanvas")
     ;
 
     private String link;
