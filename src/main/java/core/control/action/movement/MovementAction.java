@@ -18,7 +18,10 @@ public abstract class MovementAction extends Action {
     @Override
     public void interact() {
         Vector finalPos = player.getJoueur().getPosition().sum(this.getMovementVector(this.player.getJoueur().getSpeed()));
-        if(player.getCollisionner().isOutOfMapLimit(finalPos, player.getJoueur().getVisual())){
+        if(
+            player.getCollisionner().isOutOfMapLimit(finalPos, player.getJoueur().getVisual()) ||
+            player.getCollisionner().hasNextPosCollision(finalPos, player.getJoueur().getVisual())
+        ){
             return;
         }
         moveTo(finalPos);

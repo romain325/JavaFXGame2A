@@ -1,8 +1,7 @@
 package main.java.core.control;
 
-import main.java.core.logic.Collisionner;
+import main.java.core.logic.collision.Collisionner;
 import main.java.core.personnage.Joueur;
-import main.java.core.visual.map.Map;
 
 public class PlayerController {
     private final Joueur joueur;

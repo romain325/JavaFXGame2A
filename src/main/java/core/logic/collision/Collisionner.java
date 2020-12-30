@@ -1,11 +1,10 @@
-package main.java.core.logic;
+package main.java.core.logic.collision;
 
+import main.java.core.logic.Interactive;
 import main.java.core.logic.movement.Vector;
-import main.java.core.visual.Visuel;
 import main.java.core.visual.VisuelPersonnage;
 import main.java.core.visual.map.Map;
 
-import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
 
 public class Collisionner {
@@ -21,6 +20,15 @@ public class Collisionner {
         return nextPos.isIn(maxSize, joueur.getWidth(), joueur.getHeight());
     }
 
+    public boolean hasNextPosCollision(Vector nextPos, VisuelPersonnage joueur){
+        for (var elem: map.getCollisionables()) {
+            if(elem.hasCollision() && this.collisionIntersects(elem,nextPos, joueur)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Interactive getInteractiveObject(VisuelPersonnage joueur) throws InstanceNotFoundException {
         for (Interactive obj: map.getInteractives()) {
             if(!this.canInteractWith(obj, joueur)){
@@ -31,6 +39,13 @@ public class Collisionner {
     }
 
     private boolean canInteractWith(Interactive interactive, VisuelPersonnage joueur){
-        return joueur.getPosition().isIn(interactive.getPos().sum(interactive.getInteractZone().invert()), interactive.getPos().sum(interactive.getInteractZone()), joueur.getWidth(), joueur.getHeight());
+        return joueur.getPosition().isIn(interactive.getPosition().sum(interactive.getInteractZone().invert()), interactive.getPosition().sum(interactive.getInteractZone()), joueur.getWidth(), joueur.getHeight());
+    }
+
+    private boolean collisionIntersects(Collisionable collisionable, Vector nextPos,VisuelPersonnage joueur){
+        return Vector.intersects(
+                collisionable.getPosition(), collisionable.getPosition().sum(collisionable.getWidth(), collisionable.getHeight()),
+                nextPos, nextPos.sum(joueur.getWidth(), joueur.getHeight())
+        );
     }
 }

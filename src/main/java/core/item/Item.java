@@ -3,6 +3,7 @@ package main.java.core.item;
 import javafx.fxml.Initializable;
 import main.java.core.logic.Consommable;
 import main.java.core.logic.Interactive;
+import main.java.core.logic.collision.Collisionable;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.Visuel;
 import main.java.core.visual.sprite.StaticItemSprite;
@@ -10,10 +11,11 @@ import main.java.core.visual.sprite.StaticItemSprite;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class Item implements Interactive, Consommable, Initializable {
+public abstract class Item implements Interactive, Consommable, Collisionable, Initializable {
     private boolean isBusy = false;
     private boolean isConsumed = false;
     private boolean isInteractive = true;
+    private boolean hasCollision = false;
 
     protected final Vector interactZone = new Vector(30,30);
 
@@ -21,12 +23,17 @@ public abstract class Item implements Interactive, Consommable, Initializable {
     protected Visuel visual;
 
     public Item(String nom){
-        this(nom, new StaticItemSprite(0,0,nom));
+        this(nom, new StaticItemSprite(0,0,nom), false);
     }
 
-    protected Item(String nom, StaticItemSprite sprite){
+    public Item(String nom, boolean hasCollision){
+        this(nom, new StaticItemSprite(0,0,nom), hasCollision);
+    }
+
+    protected Item(String nom, StaticItemSprite sprite, boolean hasCollision){
         this.nom = nom;
         this.visual = sprite;
+        this.hasCollision = hasCollision;
         initialize(null,null);
     }
 
@@ -50,7 +57,7 @@ public abstract class Item implements Interactive, Consommable, Initializable {
     public String getNom() { return this.nom; }
 
     @Override
-    public Vector getPos() { return visual.getPosition(); }
+    public Vector getPosition() { return visual.getPosition(); }
 
     public Visuel getVisual(){
         return this.visual;
@@ -79,8 +86,24 @@ public abstract class Item implements Interactive, Consommable, Initializable {
     @Override
     public void consume() {
         isConsumed = true;
+        hasCollision = false;
         isInteractive = false;
         visual.setVisible(false);
+    }
+
+    @Override
+    public int getHeight() {
+        return visual.getHeight();
+    }
+
+    @Override
+    public int getWidth() {
+        return visual.getWidth();
+    }
+
+    @Override
+    public boolean hasCollision() {
+        return hasCollision;
     }
 
     @Override

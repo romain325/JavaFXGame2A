@@ -6,6 +6,6 @@ public interface Interactive {
     boolean isInteractive();
     void interact();
     Vector getInteractZone();
-    Vector getPos();
+    Vector getPosition();
     boolean isBusy();
 }

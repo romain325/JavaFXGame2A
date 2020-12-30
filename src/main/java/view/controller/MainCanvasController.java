@@ -37,7 +37,7 @@ public class MainCanvasController extends DefaultCanvasController {
         addInteractiveElements(andre);
 
         // Add Object
-        Item book = new Item("book") {
+        Item book = new Item("book", true) {
             @Override
             public void interact() {
                 if(!isInteractive()) return;
@@ -53,8 +53,9 @@ public class MainCanvasController extends DefaultCanvasController {
         };
         addMapElements(book.getVisual());
         addInteractiveElements(book);
+        addCollisionableElements(book);
 
-        Item door1 = new InteractZone("portal",32,32) {
+        Item door1 = new InteractZone("portal",16,16,true) {
             @Override
             public void interact() {
                 MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
@@ -68,6 +69,7 @@ public class MainCanvasController extends DefaultCanvasController {
         };
         addInteractiveElements(door1);
         addMapElements(door1.getVisual());
+        addCollisionableElements(door1);
         
 
     }

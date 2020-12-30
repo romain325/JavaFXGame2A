@@ -1,5 +1,7 @@
 package main.java.core.logic.movement;
 
+import java.awt.*;
+
 public class Vector {
     private int x;
     private int y;
@@ -26,11 +28,14 @@ public class Vector {
     }
 
     public Vector invert() {
-        return new Vector(-this.getX(), -this.getY());
+        return new Vector(-getX(),-getY());
     }
 
     public Vector sum(Vector movement){
         return new Vector(getX() + movement.getX(), getY() + movement.getY());
+    }
+    public Vector sum(int x, int y){
+        return new Vector(getX() + x , getY() + y);
     }
     public static Vector sum(Vector pos, Vector movement){
         return pos.sum(movement);
@@ -74,7 +79,25 @@ public class Vector {
         return this.isIn(new Vector(0,0), maxVector, width, height);
     }
 
-
+    public static boolean intersects(Vector r1_1,Vector r1_2,Vector r2_1,Vector r2_2) {
+        int tw = r1_2.getX() - r1_1.getX();
+        int th = r1_2.getY() - r1_1.getY();
+        int rw = r2_2.getX() - r2_1.getX();
+        int rh = r2_2.getY() - r2_1.getY();
+        if (rw > 0 && rh > 0 && tw > 0 && th > 0) {
+            int tx = r1_1.getX();
+            int ty = r1_1.getY();
+            int rx = r2_1.getX();
+            int ry = r2_1.getY();
+            rw += rx;
+            rh += ry;
+            tw += tx;
+            th += ty;
+            return (rw < rx || rw > tx) && (rh < ry || rh > ty) && (tw < tx || tw > rx) && (th < ty || th > ry);
+        } else {
+            return false;
+        }
+    }
 
 
     @Override

@@ -32,11 +32,6 @@ public abstract class PNJ extends Personnage implements Interactive {
     }
 
     @Override
-    public Vector getPos() {
-        return this.getPosition();
-    }
-
-    @Override
     public boolean isBusy() {
         return isBusy;
     }

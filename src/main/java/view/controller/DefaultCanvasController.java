@@ -1,12 +1,12 @@
 package main.java.view.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import main.java.core.control.PlayerController;
-import main.java.core.logic.Collisionner;
+import main.java.core.logic.collision.Collisionable;
+import main.java.core.logic.collision.Collisionner;
 import main.java.core.logic.GameLoop;
 import main.java.core.logic.Interactive;
 import main.java.core.personnage.Joueur;
@@ -28,8 +28,9 @@ public abstract class DefaultCanvasController implements Controller {
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
-    private List<Visuel> mapElements = new LinkedList<>();
-    private List<Interactive> interactivesElements = new LinkedList<>();
+    private final List<Visuel> mapElements = new LinkedList<>();
+    private final List<Interactive> interactivesElements = new LinkedList<>();
+    private final List<Collisionable> collisionableElements = new LinkedList<>();
     private Joueur joueur = new Joueur("Null");
 
     public DefaultCanvasController(Joueur player){
@@ -51,7 +52,7 @@ public abstract class DefaultCanvasController implements Controller {
             return;
         }
 
-        gameMap = new Map(getBackgroundImage(), mapElements, interactivesElements);
+        gameMap = new Map(getBackgroundImage(), mapElements, interactivesElements, collisionableElements);
         playerController = new PlayerController(getPlayer(), new Collisionner(gameMap, (int)gameCanvas.getWidth(), (int)gameCanvas.getHeight()));
         renderer = new CanvasRenderer(gameCanvas, gameMap);
 
@@ -65,6 +66,10 @@ public abstract class DefaultCanvasController implements Controller {
 
     public void addInteractiveElements(Interactive interactive){
         interactivesElements.add(interactive);
+    }
+
+    public void addCollisionableElements(Collisionable collisionable) {
+        collisionableElements.add(collisionable);
     }
 
     protected void initGameLoop(){
