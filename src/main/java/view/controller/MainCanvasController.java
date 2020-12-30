@@ -54,20 +54,21 @@ public class MainCanvasController extends DefaultCanvasController {
         addMapElements(book.getVisual());
         addInteractiveElements(book);
 
-        Item door1 = new InteractZone("portal",50,50) {
+        Item door1 = new InteractZone("portal",32,32) {
             @Override
             public void interact() {
-                MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Maison1CanvasController(getPlayer()));
+                MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
             }
 
             @Override
             public void initialize(URL url, ResourceBundle resourceBundle) {
                 this.setX(150);
                 this.setY(150);
-                // TODO See why the size is not understood
             }
         };
         addInteractiveElements(door1);
         addMapElements(door1.getVisual());
+        
+
     }
 }
