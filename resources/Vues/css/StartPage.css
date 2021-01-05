@@ -1,0 +1,14 @@
+.textBlock {
+    -fx-font-size: 20px;
+}
+
+.playerTalk {
+    -fx-alignment: center-right;
+    -fx-padding: 10px;
+    -fx-min-width: 100px;
+    -fx-background-color: teal;
+}
+
+#root {
+    -fx-padding: 50px;
+}

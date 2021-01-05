@@ -35,6 +35,8 @@ public class StartPage implements Controller {
     private Button validName;
     @FXML
     private TextField fieldTxt;
+    @FXML
+    private Label lastText;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,6 +47,8 @@ public class StartPage implements Controller {
         /*BINDING*/
         validName.visibleProperty().bind(fieldTxt.textProperty().isEmpty().not());
         validName.textProperty().bindBidirectional(fieldTxt.textProperty());
+
+        changeScene.visibleProperty().bind(lastText.visibleProperty());
 
 
         /*BUTTON*/

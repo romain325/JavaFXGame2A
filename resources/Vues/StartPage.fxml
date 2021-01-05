@@ -2,26 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="main.java.view.controller.StartPage">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="main.java.view.controller.StartPage"
+          stylesheets="@css/StartPage.css"
+          fx:id="root"
+>
+    <Button fx:id="startEverything" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="0" >Somebody There ?</Button>
 
-    <Button fx:id="startEverything">Somebody There ?</Button>
-
-    <VBox fx:id="firstText">
+    <VBox fx:id="firstText" styleClass="textBlock" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Label>Hello ...</Label>
         <Label>... you</Label>
         <Label>What's your name again ??</Label>
         <TextField fx:id="fieldTxt" />
     </VBox>
 
-    <Button fx:id="validName"/>
+    <Button fx:id="validName" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <VBox fx:id="secondText">
+    <VBox fx:id="secondText" styleClass="textBlock" GridPane.columnIndex="0" GridPane.rowIndex="3" >
         <Label>Ah yes of course! </Label>
         <Label>It was just to make sure it was you .. ahah ..</Label>
         <Label>Anyway ! let's go back to our little world !</Label>
-        <Button fx:id="changeScene">Let's go to the wonderful world!</Button>
+        <Label fx:id="lastText">Follow Me?</Label>
     </VBox>
 
-</VBox>
+    <Button fx:id="changeScene" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="4" >Alright then</Button>
+
+</GridPane>
