@@ -44,6 +44,9 @@ public class Vector {
     public Vector subTo(Vector pos){
         return new Vector(pos.getX() - getX(), pos.getY() - getY());
     }
+    public Vector sub(Vector pos){
+        return new Vector(getX() - pos.getX(), getY() - pos.getY());
+    }
     public static Vector sub(Vector vector, Vector subTo){ return vector.subTo(subTo); }
 
     public void copy(Vector vector){

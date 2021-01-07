@@ -7,5 +7,7 @@ public interface Interactive {
     void interact();
     Vector getInteractZone();
     Vector getPosition();
+    int getHeight();
+    int getWidth();
     boolean isBusy();
 }

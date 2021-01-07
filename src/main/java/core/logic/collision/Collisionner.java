@@ -31,7 +31,7 @@ public class Collisionner {
 
     public Interactive getInteractiveObject(VisuelPersonnage joueur) throws InstanceNotFoundException {
         for (Interactive obj: map.getInteractives()) {
-            if(!this.canInteractWith(obj, joueur)){
+            if(this.canInteractWith(obj, joueur)){
                 return obj;
             }
         }
@@ -39,7 +39,12 @@ public class Collisionner {
     }
 
     private boolean canInteractWith(Interactive interactive, VisuelPersonnage joueur){
-        return joueur.getPosition().isIn(interactive.getPosition().sum(interactive.getInteractZone().invert()), interactive.getPosition().sum(interactive.getInteractZone()), joueur.getWidth(), joueur.getHeight());
+        return Vector.intersects(
+                joueur.getPosition(),
+                joueur.getPosition().sum(joueur.getWidth(), joueur.getHeight()),
+                interactive.getPosition().sum(interactive.getInteractZone().invert()),
+                interactive.getPosition().sum(interactive.getWidth(), interactive.getHeight()).sum(interactive.getInteractZone())
+        );
     }
 
     private boolean collisionIntersects(Collisionable collisionable, Vector nextPos,VisuelPersonnage joueur){

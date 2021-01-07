@@ -23,7 +23,7 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
     private boolean isInteractive = true;
     private boolean hasCollision = false;
 
-    protected final Vector interactZone = new Vector(30,30);
+    protected final Vector interactZone = new Vector(15,15);
 
     private final String nom;
     private String message = "";

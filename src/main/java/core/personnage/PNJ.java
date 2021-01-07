@@ -16,7 +16,7 @@ public abstract class PNJ extends Personnage implements Interactive {
 
     private boolean isBusy = false;
 
-    protected final Vector interactZone = new Vector(40,40);
+    protected final Vector interactZone = new Vector(15,15);
 
     public PNJ(String nom, Vector vector) {
         super(nom);
@@ -56,5 +56,15 @@ public abstract class PNJ extends Personnage implements Interactive {
 
     public String getDialog(){
         return dialogs.get(NIVEAU_FOLIE);
+    }
+
+    @Override
+    public int getHeight() {
+        return super.getVisual().getHeight();
+    }
+
+    @Override
+    public int getWidth() {
+        return super.getVisual().getWidth();
     }
 }
