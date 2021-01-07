@@ -7,9 +7,15 @@ import main.java.core.logic.collision.Collisionable;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.Visuel;
 import main.java.core.visual.sprite.StaticItemSprite;
+import main.java.core.visual.ui.InfoBox;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public abstract class Item implements Interactive, Consommable, Collisionable, Initializable {
     private boolean isBusy = false;
@@ -20,6 +26,7 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
     protected final Vector interactZone = new Vector(30,30);
 
     private final String nom;
+    private String message = "";
     protected Visuel visual;
 
     public Item(String nom){
@@ -34,6 +41,15 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
         this.nom = nom;
         this.visual = sprite;
         this.hasCollision = hasCollision;
+
+        URL path = getClass().getResource("/dialog/item/" + this.getNom() + ".txt");
+        if(path != null) {
+            try {
+                this.message = new Scanner(new FileReader(path.getPath())).nextLine().replace("\\n", "\n");
+            } catch (FileNotFoundException ignored) {
+
+            }
+        }
         initialize(null,null);
     }
 
@@ -85,6 +101,9 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
 
     @Override
     public void consume() {
+        if(!this.message.replace(" ", "").equals("")){
+            new InfoBox(this.message);
+        }
         isConsumed = true;
         hasCollision = false;
         isInteractive = false;
