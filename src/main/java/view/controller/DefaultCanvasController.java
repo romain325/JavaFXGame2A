@@ -14,6 +14,7 @@ import main.java.core.visual.Visuel;
 import main.java.core.visual.map.Map;
 import main.java.view.MainFrame;
 import main.java.view.renderer.CanvasRenderer;
+import main.java.view.renderer.Rendable;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -28,7 +29,7 @@ public abstract class DefaultCanvasController implements Controller {
 
     private GameLoop gameLoop;
     private CanvasRenderer renderer;
-    private final List<Visuel> mapElements = new LinkedList<>();
+    private final List<Rendable> mapElements = new LinkedList<>();
     private final List<Interactive> interactivesElements = new LinkedList<>();
     private final List<Collisionable> collisionableElements = new LinkedList<>();
     private Joueur joueur = new Joueur("Null");

@@ -11,9 +11,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CanvasRenderer {
-    private Canvas canvas;
-    private GraphicsContext context;
-    private Map gameMap;
+    private final Canvas canvas;
+    private final GraphicsContext context;
+    private final Map gameMap;
 
     public CanvasRenderer(Canvas canvas, Map map){
         this.canvas = canvas;
@@ -28,6 +28,9 @@ public class CanvasRenderer {
         for (Rendable elem : gameMap.getElements()) {
             elem.render(context);
         }
+
+        var message = gameMap.getMessageDisplay();
+        if(message != null) message.render(context);
 
         context.restore();
     }
