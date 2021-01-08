@@ -74,11 +74,5 @@ public abstract class Visuel implements IVisuel, Rendable {
 
     public void debugVision(GraphicsContext context){
         context.strokeRect(this.getCoordX(),this.getCoordY(),this.getWidth(), this.getHeight());
-        context.strokeLine(
-                this.getCoordX() + (-15),
-                this.getCoordY() + (-15),
-                this.getCoordX() + this.getWidth() + 15,
-                this.getCoordY() + this.getHeight() + 15
-                );
     }
 }

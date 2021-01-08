@@ -4,13 +4,18 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.core.item.InteractZone;
 import main.java.core.item.Item;
+import main.java.core.logic.collision.Collisionable;
+import main.java.core.logic.collision.InvisibleCollisionable;
+import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.pnjs.Andre;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
 
 import java.net.URL;
+import java.util.InvalidPropertiesFormatException;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class MainCanvasController extends DefaultCanvasController {
 
@@ -70,7 +75,20 @@ public class MainCanvasController extends DefaultCanvasController {
         addInteractiveElements(door1);
         addMapElements(door1.getVisual());
         addCollisionableElements(door1);
-        
+
+        Scanner scanner = new Scanner(getClass().getResourceAsStream("/map/main.pos"));
+        int[] values = new int[4];
+        try{
+            while (scanner.hasNextInt()){
+                for (int i = 0; i < 4; i++){
+                    if(!scanner.hasNextInt()) throw new InvalidPropertiesFormatException("Position file is wrong");
+                    values[i] = scanner.nextInt();
+                }
+                addCollisionableElements(new InvisibleCollisionable(new Vector(values[0], values[1]), values[2], values[3]));
+            }
+        }catch (InvalidPropertiesFormatException e){
+            e.printStackTrace();
+        }
 
     }
 }
