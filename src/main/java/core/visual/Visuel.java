@@ -6,7 +6,9 @@ import main.java.core.logic.movement.Vector;
 import main.java.view.renderer.Rendable;
 import main.java.view.renderer.ZIndex;
 
-public abstract class Visuel implements IVisuel, Rendable {
+import java.io.Serializable;
+
+public abstract class Visuel implements IVisuel, Rendable, Serializable {
     private final int Height;
     private final int Width;
     private final Vector position;

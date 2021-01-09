@@ -1,8 +1,9 @@
 package main.java.core.logic.movement;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Vector {
+public class Vector implements Serializable {
     private int x;
     private int y;
 

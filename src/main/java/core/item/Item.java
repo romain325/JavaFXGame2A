@@ -11,17 +11,17 @@ import main.java.core.visual.ui.InfoBox;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.Serializable;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public abstract class Item implements Interactive, Consommable, Collisionable, Initializable {
+public abstract class Item implements Interactive, Consommable, Collisionable, Initializable, Serializable, ItemProcuration{
     private boolean isBusy = false;
     private boolean isConsumed = false;
     private boolean isInteractive = true;
-    private boolean hasCollision = false;
+    private boolean hasCollision;
+    private boolean hasIllimitedConso = false;
 
     protected final Vector interactZone = new Vector(15,15);
 
@@ -37,6 +37,14 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
         this(nom, new StaticItemSprite(0,0,nom), hasCollision);
     }
 
+    public Item(String nom, int x,int y,boolean hasCollision){
+        this(nom, new StaticItemSprite(x,y,nom), hasCollision);
+    }
+
+    public Item(ItemDTO dto) {
+        this(dto.getNom(),StaticItemSprite.factory(dto.getPosition(), dto.getWidth(), dto.getHeight(), dto.getNom()),dto.getMessage(),dto.hasCollision(), dto.hasIllimitedConsommation());
+    }
+
     protected Item(String nom, StaticItemSprite sprite, boolean hasCollision){
         this.nom = nom;
         this.visual = sprite;
@@ -50,6 +58,15 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
 
             }
         }
+        initialize(null,null);
+    }
+
+    protected Item(String nom, StaticItemSprite sprite, String message, boolean hasCollision, boolean hasIllimitedConso){
+        this.nom = nom;
+        this.visual = sprite;
+        this.hasCollision = hasCollision;
+        this.message = message;
+        this.hasIllimitedConso = hasIllimitedConso;
         initialize(null,null);
     }
 
@@ -70,6 +87,7 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
         return visual.getCoordY();
     }
 
+    @Override
     public String getNom() { return this.nom; }
 
     @Override
@@ -101,9 +119,6 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
 
     @Override
     public void consume() {
-        if(!this.message.replace(" ", "").equals("")){
-            new InfoBox(this.message);
-        }
         isConsumed = true;
         hasCollision = false;
         isInteractive = false;
@@ -125,9 +140,22 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
         return hasCollision;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public ItemDTO getDTO(){
+        return new ItemDTO(this);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         return;
+    }
+
+    @Override
+    public boolean hasIllimitedConsommation() {
+        return hasIllimitedConso;
     }
 
 }
