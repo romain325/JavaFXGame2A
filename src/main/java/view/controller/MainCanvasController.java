@@ -65,6 +65,11 @@ public class MainCanvasController extends DefaultCanvasController {
         SerializationManager.serializeObject(bridge2.getNom() + ".obj", bridge2);
         addItem(SerializationManager.<ItemDTO>deserializeObject("bridge.obj").getInstance());
 
+        Item hotel = new InteractZone("hotel", 615,195, 40,2,"You enter the hotel", true, true);
+        SerializationManager.serializeObject(hotel.getNom() + ".obj", hotel);
+        addItem(SerializationManager.<ItemDTO>deserializeObject("hotel.obj").getInstance());
+
+
         Scanner scanner = new Scanner(getClass().getResourceAsStream("/map/main.pos"));
         int[] values = new int[4];
         try{
