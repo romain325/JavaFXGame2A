@@ -8,6 +8,7 @@ import main.java.core.logic.movement.Vector;
 import main.java.core.visual.Visuel;
 import main.java.core.visual.sprite.StaticItemSprite;
 import main.java.core.visual.ui.InfoBox;
+import main.java.utils.serialization.SerializableDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public abstract class Item implements Interactive, Consommable, Collisionable, Initializable, Serializable, ItemProcuration{
+public class Item implements Interactive, Consommable, Collisionable, Initializable, SerializableDTO<ItemDTO>, ItemProcuration{
     private boolean isBusy = false;
     private boolean isConsumed = false;
     private boolean isInteractive = true;
@@ -156,6 +157,21 @@ public abstract class Item implements Interactive, Consommable, Collisionable, I
     @Override
     public boolean hasIllimitedConsommation() {
         return hasIllimitedConso;
+    }
+
+    @Override
+    public void interact() {
+        if (isInteractive() && !isBusy() && !getMessage().replace(" ", "").equals("")){
+            new InfoBox(getMessage());
+        }
+        doAction();
+        if(!hasIllimitedConsommation()){
+            consume();
+        }
+    }
+
+    public void doAction(){
+        return;
     }
 
 }

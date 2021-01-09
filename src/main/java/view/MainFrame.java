@@ -11,7 +11,11 @@ import main.java.core.control.KeyBinder;
 import main.java.view.controller.Controller;
 import main.java.view.controller.DefaultCanvasController;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MainFrame extends Application {
     private static Stage rootStage;
@@ -24,7 +28,8 @@ public class MainFrame extends Application {
 
         setupFixedSize(rootStage); // CHANGE TO VAR
 
-        switchScene(FRAME.START_PAGE, false);
+        System.out.println(Files.exists(Paths.get("player.obj").toAbsolutePath()));
+        switchScene((Files.exists(Paths.get("player.obj").toAbsolutePath()) ? FRAME.KNOWN_PLAYER_START : FRAME.START_PAGE), false);
 
         rootStage.initStyle(StageStyle.UNDECORATED);
         rootStage.setTitle("SuperJeu");
@@ -45,6 +50,7 @@ public class MainFrame extends Application {
             root = fxmlLoader.load();
         } catch (IOException e) {
             fxmlLoader = new FXMLLoader(MainFrame.class.getResource(FRAME.START_PAGE.getLink()));
+            e.printStackTrace();
             try {
                 root =fxmlLoader.load();
             } catch (IOException ioException) {

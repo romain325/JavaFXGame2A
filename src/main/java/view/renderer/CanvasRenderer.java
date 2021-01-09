@@ -26,7 +26,9 @@ public class CanvasRenderer {
         context.drawImage(gameMap.getBackground(),0 ,0);
 
         for (Rendable elem : gameMap.getElements()) {
-            elem.render(context);
+            if(elem.isVisible()) {
+                elem.render(context);
+            }
         }
 
         var message = gameMap.getMessageDisplay();

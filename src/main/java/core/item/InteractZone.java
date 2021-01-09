@@ -21,15 +21,4 @@ public class InteractZone extends Item {
         super(dto);
     }
 
-    @Override
-    public void interact() {
-        if (isInteractive() && !isBusy())
-            if(!getMessage().replace(" ", "").equals("")){
-                new InfoBox(getMessage());
-            }
-        if(!hasIllimitedConsommation()){
-            consume();
-        }
-    }
-
 }

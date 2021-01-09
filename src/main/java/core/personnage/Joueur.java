@@ -2,10 +2,11 @@ package main.java.core.personnage;
 
 import main.java.core.item.Item;
 import main.java.core.logic.movement.Vector;
+import main.java.utils.serialization.SerializableDTO;
 
 import java.util.Collection;
 
-public class Joueur extends Personnage {
+public class Joueur extends Personnage implements JoueurProcuration, SerializableDTO<JoueurDTO> {
     private Collection<Item> inventaire;
     private boolean soupcon = false;
     private int speed;
@@ -17,6 +18,10 @@ public class Joueur extends Personnage {
 
     public Joueur(String nom) {
         this(nom,5);
+    }
+
+    public Joueur(JoueurDTO dto){
+        this(dto.getNom(), dto.getSpeed());
     }
 
     public void setCoord(int x, int y){
@@ -50,6 +55,10 @@ public class Joueur extends Personnage {
 
     public int getSpeed(){
         return this.speed;
+    }
+
+    public JoueurDTO getDTO(){
+        return new JoueurDTO(this);
     }
 
 }

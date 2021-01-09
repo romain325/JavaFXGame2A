@@ -10,5 +10,4 @@ public class Main {
         Application.launch(MainFrame.class, args);
     }
 
-
 }

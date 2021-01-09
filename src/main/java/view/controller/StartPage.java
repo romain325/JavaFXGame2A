@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import main.java.core.personnage.Joueur;
+import main.java.utils.effect.VisualEffect;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
 
@@ -41,8 +42,8 @@ public class StartPage implements Controller {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /*HIDING*/
-        hidePane(firstText);
-        hidePane(secondText);
+        VisualEffect.hidePane(firstText);
+        VisualEffect.hidePane(secondText);
 
         /*BINDING*/
         validName.visibleProperty().bind(fieldTxt.textProperty().isEmpty().not());
@@ -55,30 +56,8 @@ public class StartPage implements Controller {
         changeScene.setOnAction(actionEvent -> {
             MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(new Joueur(fieldTxt.getText())));
         });
-        startEverything.setOnAction(actionEvent -> showTextProgressively(firstText));
-        validName.setOnAction(actionEvent -> showTextProgressively(secondText));
+        startEverything.setOnAction(actionEvent -> VisualEffect.showTextProgressively(firstText));
+        validName.setOnAction(actionEvent -> VisualEffect.showTextProgressively(secondText));
     }
 
-    private void hidePane(Pane pane){
-        pane.setVisible(false);
-        for (var node: pane.getChildren()) {
-            node.setVisible(false);
-        }
-    }
-
-    private void showTextProgressively(Pane pane) {
-        if(pane.isVisible()) return;
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(1);
-        pane.setVisible(true);
-        int it = 0;
-        for (var node : pane.getChildren()) {
-            it++;
-            timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(500*it),
-                            new KeyValue(node.visibleProperty(), true)
-                    ));
-        }
-        timeline.play();
-    }
 }

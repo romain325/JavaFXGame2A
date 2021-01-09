@@ -2,6 +2,7 @@ package main.java.view;
 
 public enum FRAME {
     START_PAGE("StartPage"),
+    KNOWN_PLAYER_START("KnownStart"),
     PLAYABLE_CANVAS("PlayableCanvas")
     ;
 

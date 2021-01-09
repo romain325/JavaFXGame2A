@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="main.java.view.controller.KnownStart"
+          stylesheets="@css/StartPage.css"
+          fx:id="root"
+>
+    <Button fx:id="startEverything" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="0" >Somebody There ?</Button>
+
+    <VBox fx:id="firstText" styleClass="textBlock" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label>Hello ...</Label>
+        <Label>... you</Label>
+        <Label>I remember you</Label>
+        <Label fx:id="playerName" />
+    </VBox>
+
+    <Button fx:id="validIdentity" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="2">Answer him</Button>
+
+    <VBox fx:id="secondText" styleClass="textBlock" GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <Label>Oopsiiie ...</Label>
+        <Label>Ok sorry about that!</Label>
+        <Label fx:id="lastText">Let's start again from the beginning !</Label>
+    </VBox>
+
+    <Button fx:id="startAgain" styleClass="playerTalk" GridPane.columnIndex="1" GridPane.rowIndex="4">Alright then</Button>
+
+
+
+</GridPane>

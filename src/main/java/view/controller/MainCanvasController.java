@@ -9,7 +9,7 @@ import main.java.core.logic.collision.InvisibleCollisionable;
 import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.pnjs.Andre;
-import main.java.utils.SerializationManager;
+import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
 
@@ -41,30 +41,29 @@ public class MainCanvasController extends DefaultCanvasController {
         addInteractiveElements(andre);
 
         // Add Object
-        Item book = new Item("book",100,100, true) {
-            @Override
-            public void interact() {
-                if(!isInteractive()) return;
-                consume();
-            }
-        };
-        addMapElements(book.getVisual());
-        addInteractiveElements(book);
-        addCollisionableElements(book);
+
+        Item book = new Item("book",100,100, true);
+        SerializationManager.serializeObject(book.getNom() + ".obj", book);
+        addItem(SerializationManager.<ItemDTO>deserializeObject("book.obj").getInstance());
+
 
         Item door1 = new InteractZone("portal",150,150,16,16,true) {
             @Override
-            public void interact() {
+            public void doAction() {
                 MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
             }
         };
-        addInteractiveElements(door1);
-        addMapElements(door1.getVisual());
-        addCollisionableElements(door1);
+        SerializationManager.serializeObject(door1.getNom() + ".obj", door1);
+        addItem(new Item(SerializationManager.<ItemDTO>deserializeObject("portal.obj")){
+            @Override
+            public void doAction() {
+                MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
+            }
+        });
 
-        // Item bridge2 = new InteractZone("bridge", 485,505, 20,20,"The bridge is broken and you can't get through it", true, true);
-        // new SerializationManager<ItemDTO>().serializeObject(bridge2.getNom() + ".obj", bridge2.getDTO());
-        addItem(new InteractZone(new SerializationManager<ItemDTO>().deserializeObject("bridge.obj")));
+        Item bridge2 = new InteractZone("bridge", 485,505, 20,20,"The bridge is broken and you can't get through it", true, true);
+        SerializationManager.serializeObject(bridge2.getNom() + ".obj", bridge2);
+        addItem(SerializationManager.<ItemDTO>deserializeObject("bridge.obj").getInstance());
 
         Scanner scanner = new Scanner(getClass().getResourceAsStream("/map/main.pos"));
         int[] values = new int[4];
