@@ -2,6 +2,7 @@ package main.java.core.personnage;
 
 import main.java.core.item.Item;
 import main.java.core.logic.movement.Vector;
+import main.java.core.visual.sprite.AnimatedPlayerSprite;
 import main.java.utils.serialization.SerializableDTO;
 
 import java.util.Collection;
@@ -13,6 +14,7 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
 
     public Joueur(String nom, int speed) {
         super(nom);
+        this.visual = new AnimatedPlayerSprite("/img/char/player", this.getPosition());
         this.speed = speed;
     }
 

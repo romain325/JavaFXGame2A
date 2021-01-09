@@ -47,13 +47,19 @@ public class KeyBinder {
         KeyBinder.scene.setOnKeyPressed(null);
     }
 
+    public static boolean hasKeyDown(){ return keyDown.isEmpty(); }
+
     public static boolean isKeyDown(KeyCode code){
         return keyDown.contains(code);
     }
 
+    public static InteractKey getCurrentInteract(){
+        if (hasKeyDown()) return InteractKey.NONE_KEY;
+        return InteractKey.getInteractKey((KeyCode) keyDown.toArray()[0]);
+    }
+
     public static Action getCurrentAction(PlayerController playerController) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        if (keyDown.isEmpty()) return new Idle(playerController);
-        return InteractKey.getInteractKey((KeyCode) keyDown.toArray()[0]).getAction(playerController);
+        return getCurrentInteract().getAction(playerController);
     }
 
 }
