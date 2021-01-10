@@ -1,6 +1,7 @@
 package main.java.core.personnage;
 
 import main.java.core.item.Item;
+import main.java.core.logic.advancement.GameAdvancement;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.sprite.AnimatedPlayerSprite;
 import main.java.utils.serialization.SerializableDTO;
@@ -8,8 +9,7 @@ import main.java.utils.serialization.SerializableDTO;
 import java.util.Collection;
 
 public class Joueur extends Personnage implements JoueurProcuration, SerializableDTO<JoueurDTO> {
-    private Collection<Item> inventaire;
-    private boolean soupcon = false;
+    private GameAdvancement gameAdvancement = new GameAdvancement();
     private int speed;
 
     public Joueur(String nom, int speed) {
@@ -24,6 +24,7 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
 
     public Joueur(JoueurDTO dto){
         this(dto.getNom(), dto.getSpeed());
+        this.gameAdvancement = dto.getAdvancement();
     }
 
     public void setCoord(int x, int y){
@@ -47,16 +48,13 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
         super.setY(y);
     }
 
-    public boolean hasSoupcon() {
-        return soupcon;
-    }
-
-    public void setSoupcon(boolean soupcon) {
-        this.soupcon = soupcon;
-    }
-
     public int getSpeed(){
         return this.speed;
+    }
+
+    @Override
+    public GameAdvancement getAdvancement() {
+        return gameAdvancement;
     }
 
     public JoueurDTO getDTO(){

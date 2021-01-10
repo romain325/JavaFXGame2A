@@ -1,6 +1,7 @@
 package main.java.core.item;
 
 import javafx.fxml.Initializable;
+import main.java.core.control.PlayerController;
 import main.java.core.logic.Consommable;
 import main.java.core.logic.Interactive;
 import main.java.core.logic.collision.Collisionable;
@@ -23,6 +24,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     private boolean isInteractive = true;
     private boolean hasCollision;
     private boolean hasIllimitedConso = false;
+    private int hintVal = 0;
 
     protected final Vector interactZone = new Vector(15,15);
 
@@ -31,25 +33,26 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     protected Visuel visual;
 
     public Item(String nom){
-        this(nom, new StaticItemSprite(0,0,nom), false);
+        this(nom, new StaticItemSprite(0,0,nom), false, 0);
     }
 
     public Item(String nom, boolean hasCollision){
-        this(nom, new StaticItemSprite(0,0,nom), hasCollision);
+        this(nom, new StaticItemSprite(0,0,nom), hasCollision, 0);
     }
 
-    public Item(String nom, int x,int y,boolean hasCollision){
-        this(nom, new StaticItemSprite(x,y,nom), hasCollision);
+    public Item(String nom, int x,int y,boolean hasCollision, int hintVal){
+        this(nom, new StaticItemSprite(x,y,nom), hasCollision, hintVal);
     }
 
     public Item(ItemDTO dto) {
-        this(dto.getNom(),StaticItemSprite.factory(dto.getPosition(), dto.getWidth(), dto.getHeight(), dto.getNom()),dto.getMessage(),dto.hasCollision(), dto.hasIllimitedConsommation());
+        this(dto.getNom(),StaticItemSprite.factory(dto.getPosition(), dto.getWidth(), dto.getHeight(), dto.getNom()),dto.getMessage(),dto.hasCollision(), dto.hasIllimitedConsommation(), dto.getHintValue());
     }
 
-    protected Item(String nom, StaticItemSprite sprite, boolean hasCollision){
+    protected Item(String nom, StaticItemSprite sprite, boolean hasCollision, int hintVal){
         this.nom = nom;
         this.visual = sprite;
         this.hasCollision = hasCollision;
+        this.hintVal = hintVal;
 
         URL path = getClass().getResource("/dialog/item/" + this.getNom() + ".txt");
         if(path != null) {
@@ -62,12 +65,13 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
         initialize(null,null);
     }
 
-    protected Item(String nom, StaticItemSprite sprite, String message, boolean hasCollision, boolean hasIllimitedConso){
+    protected Item(String nom, StaticItemSprite sprite, String message, boolean hasCollision, boolean hasIllimitedConso, int hintVal){
         this.nom = nom;
         this.visual = sprite;
         this.hasCollision = hasCollision;
         this.message = message;
         this.hasIllimitedConso = hasIllimitedConso;
+        this.hintVal = hintVal;
         initialize(null,null);
     }
 
@@ -119,10 +123,11 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     }
 
     @Override
-    public void consume() {
+    public void consume(PlayerController playerController) {
         isConsumed = true;
         hasCollision = false;
         isInteractive = false;
+        playerController.getJoueur().getAdvancement().addCollectedItem(this);
         visual.setVisible(false);
     }
 
@@ -141,10 +146,17 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
         return hasCollision;
     }
 
+    @Override
+    public int getHintValue() {
+        return hintVal;
+    }
+
+    @Override
     public String getMessage() {
         return message;
     }
 
+    @Override
     public ItemDTO getDTO(){
         return new ItemDTO(this);
     }
@@ -160,17 +172,17 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     }
 
     @Override
-    public void interact() {
+    public void interact(PlayerController playerController) {
         if (isInteractive() && !isBusy() && !getMessage().replace(" ", "").equals("")){
             new InfoBox(getMessage());
         }
-        doAction();
+        doAction(playerController);
         if(!hasIllimitedConsommation()){
-            consume();
+            consume(playerController);
         }
     }
 
-    public void doAction(){
+    public void doAction(PlayerController playerController){
         return;
     }
 

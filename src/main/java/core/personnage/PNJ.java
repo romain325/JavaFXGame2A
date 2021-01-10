@@ -1,5 +1,6 @@
 package main.java.core.personnage;
 
+import main.java.core.control.PlayerController;
 import main.java.core.logic.Interactive;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.sprite.StaticPlayerSprite;
@@ -32,7 +33,7 @@ public abstract class PNJ extends Personnage implements Interactive {
     }
 
     @Override
-    public void interact() {
+    public void interact(PlayerController playerController) {
         if(isBusy()) return;
         isBusy = true;
         new InfoBox(getDialog());

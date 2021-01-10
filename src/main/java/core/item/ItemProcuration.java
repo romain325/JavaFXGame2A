@@ -10,4 +10,5 @@ public interface ItemProcuration {
     int getHeight();
     String getNom();
     boolean hasCollision();
+    int getHintValue();
 }

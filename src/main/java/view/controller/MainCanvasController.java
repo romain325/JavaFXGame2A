@@ -2,6 +2,7 @@ package main.java.view.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import main.java.core.control.PlayerController;
 import main.java.core.item.InteractZone;
 import main.java.core.item.Item;
 import main.java.core.item.ItemDTO;
@@ -42,21 +43,21 @@ public class MainCanvasController extends DefaultCanvasController {
 
         // Add Object
 
-        Item book = new Item("book",100,100, true);
+        Item book = new Item("book",100,100, true, 2);
         SerializationManager.serializeObject(book.getNom() + ".obj", book);
         addItem(SerializationManager.<ItemDTO>deserializeObject("book.obj").getInstance());
 
 
         Item door1 = new InteractZone("portal",150,150,16,16,true) {
             @Override
-            public void doAction() {
+            public void doAction(PlayerController playerController) {
                 MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
             }
         };
         SerializationManager.serializeObject(door1.getNom() + ".obj", door1);
         addItem(new Item(SerializationManager.<ItemDTO>deserializeObject("portal.obj")){
             @Override
-            public void doAction() {
+            public void doAction(PlayerController playerController) {
                 MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
             }
         });
@@ -87,6 +88,7 @@ public class MainCanvasController extends DefaultCanvasController {
     }
 
     private void addItem(Item item){
+        if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom())) return;
         if(item.hasCollision()) addCollisionableElements(item);
         if(item.isInteractive()) addInteractiveElements(item);
         if(item.getVisual().isVisible()) addMapElements(item.getVisual());

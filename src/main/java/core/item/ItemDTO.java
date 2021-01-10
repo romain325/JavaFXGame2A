@@ -13,8 +13,9 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
     private final String nom;
     private String message = "";
     private final boolean hasCollision;
-    private boolean hasIllimitedCollision;
-    private boolean hasSprite;
+    private final boolean hasIllimitedCollision;
+    private final boolean hasSprite;
+    private final int hintVal;
 
     public ItemDTO(Item item) {
         this.pos = item.getPosition();
@@ -25,34 +26,47 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
         hasCollision = item.hasCollision();
         hasIllimitedCollision = item.hasIllimitedConsommation();
         hasSprite = item.getVisual().isVisible();
+        hintVal = item.getHintValue();
     }
 
+    @Override
     public boolean hasIllimitedConsommation() {
         return hasIllimitedCollision;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
 
+    @Override
     public Vector getPosition() {
         return pos;
     }
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
 
+    @Override
     public String getNom() {
         return nom;
     }
 
+    @Override
     public boolean hasCollision() {
         return hasCollision;
+    }
+
+    @Override
+    public int getHintValue() {
+        return hintVal;
     }
 
     public boolean hasSprite() {

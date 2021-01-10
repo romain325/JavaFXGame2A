@@ -9,13 +9,13 @@ public class InteractZone extends Item {
         this(nom, w,h, false);
     }
     public InteractZone(String nom, int w, int h, boolean hasCollision) {
-        super(nom, new StaticItemSprite(0,0,w,h), hasCollision);
+        super(nom, new StaticItemSprite(0,0,w,h), hasCollision,0);
     }
     public InteractZone(String nom,int x, int y, int w, int h, boolean hasCollision) {
-        super(nom, new StaticItemSprite(x,y,w,h), hasCollision);
+        super(nom, new StaticItemSprite(x,y,w,h), hasCollision,0);
     }
     public InteractZone(String nom,int x, int y, int w, int h, String message,boolean hasCollision, boolean hasUnlimitedConso) {
-        super(nom, new StaticItemSprite(x,y,w,h), message, hasCollision, hasUnlimitedConso);
+        super(nom, new StaticItemSprite(x,y,w,h), message, hasCollision, hasUnlimitedConso,0);
     }
     public InteractZone(ItemDTO dto) {
         super(dto);
