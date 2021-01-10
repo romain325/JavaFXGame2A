@@ -5,11 +5,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import main.java.core.control.PlayerController;
+import main.java.core.item.Item;
 import main.java.core.logic.collision.Collisionable;
 import main.java.core.logic.collision.Collisionner;
 import main.java.core.logic.GameLoop;
 import main.java.core.logic.Interactive;
+import main.java.core.logic.collision.InvisibleCollisionable;
+import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
+import main.java.core.personnage.PNJ;
 import main.java.core.visual.Visuel;
 import main.java.core.visual.map.Map;
 import main.java.view.MainFrame;
@@ -17,9 +21,7 @@ import main.java.view.renderer.CanvasRenderer;
 import main.java.view.renderer.Rendable;
 
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public abstract class DefaultCanvasController implements Controller {
     @FXML
@@ -100,4 +102,33 @@ public abstract class DefaultCanvasController implements Controller {
 
 
     protected abstract void initMapElements();
+
+    protected void addItem(Item item){
+        if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom())) return;
+        if(item.hasCollision()) addCollisionableElements(item);
+        if(item.isInteractive()) addInteractiveElements(item);
+        if(item.getVisual().isVisible()) addMapElements(item.getVisual());
+    }
+
+    protected void addPNJ(PNJ pnj){
+        if(pnj.getLifespan() < getPlayer().getAdvancement().getDayElapsed()) return;
+        addMapElements(pnj.getVisual());
+        addInteractiveElements(pnj);
+    }
+
+    protected void loadCollisionElements(String filename){
+        Scanner scanner = new Scanner(getClass().getResourceAsStream("/map/" + filename + ".pos"));
+        int[] values = new int[4];
+        try{
+            while (scanner.hasNextInt()){
+                for (int i = 0; i < 4; i++){
+                    if(!scanner.hasNextInt()) throw new InvalidPropertiesFormatException("Position file is wrong. Some Collision may not work.");
+                    values[i] = scanner.nextInt();
+                }
+                addCollisionableElements(new InvisibleCollisionable(new Vector(values[0], values[1]), values[2], values[3]));
+            }
+        }catch (InvalidPropertiesFormatException e){
+            e.printStackTrace();
+        }
+    }
 }

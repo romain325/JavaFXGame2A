@@ -25,6 +25,7 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
     public Joueur(JoueurDTO dto){
         this(dto.getNom(), dto.getSpeed());
         this.gameAdvancement = dto.getAdvancement();
+        PNJ.NIVEAU_FOLIE = gameAdvancement.getDayElapsed();
     }
 
     public void setCoord(int x, int y){

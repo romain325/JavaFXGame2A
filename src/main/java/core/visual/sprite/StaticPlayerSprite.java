@@ -14,9 +14,16 @@ public class StaticPlayerSprite extends VisuelPersonnage {
         this.sprite = new Image(getClass().getResourceAsStream(imagePath));
     }
 
+    public StaticPlayerSprite(Vector pos) {
+        super(pos.getX(), pos.getY());
+        this.sprite = null;
+    }
+
     @Override
     public void render(GraphicsContext context) {
         super.render(context);
-        context.drawImage(sprite, this.getCoordX(), this.getCoordY());
+        if(this.sprite != null){
+            context.drawImage(sprite, this.getCoordX(), this.getCoordY());
+        }
     }
 }

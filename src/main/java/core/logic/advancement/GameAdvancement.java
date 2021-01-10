@@ -1,6 +1,7 @@
 package main.java.core.logic.advancement;
 
 import main.java.core.item.Item;
+import main.java.core.personnage.PNJ;
 import main.java.utils.serialization.SerializableDTO;
 
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class GameAdvancement implements Serializable {
 
     public void addDay() {
         this.dayElapsed += 1;
+        PNJ.NIVEAU_FOLIE++;
     }
 
     public int getNbHints() {
@@ -35,7 +37,7 @@ public class GameAdvancement implements Serializable {
         return collectedItems;
     }
 
-    public void addCollectedItem(Item item) {
+    public void addCollectedItem(Item item){
         collectedItems.add(item.getNom());
         nbHints += item.getHintValue();
         if(nbHints > 10){
