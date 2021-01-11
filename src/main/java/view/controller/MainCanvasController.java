@@ -6,24 +6,20 @@ import main.java.core.control.PlayerController;
 import main.java.core.item.InteractZone;
 import main.java.core.item.Item;
 import main.java.core.item.ItemDTO;
-import main.java.core.logic.collision.InvisibleCollisionable;
+import main.java.core.logic.GameLoop;
 import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
-import main.java.core.personnage.pnjs.Andre;
-import main.java.core.personnage.pnjs.John;
-import main.java.core.personnage.pnjs.Marie;
+import main.java.core.visual.ui.InfoBox;
 import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
-
-import java.util.InvalidPropertiesFormatException;
-import java.util.Scanner;
 
 public class MainCanvasController extends DefaultCanvasController {
 
     public MainCanvasController(Joueur player){
         super(player);
+        this.getPlayer().setPosition(new Vector(440,505));
     }
 
     private Image background = new Image(getClass().getResourceAsStream("/img/map.png"));
@@ -39,9 +35,9 @@ public class MainCanvasController extends DefaultCanvasController {
         this.getPlayer().getVisual().setDebugMode(Color.RED);
 
         // Add pnj
-        addPNJ(new John(true));
-        addPNJ(new Andre(true));
-        addPNJ(new Marie(true));
+        addPNJ(new PNJ("John",new Vector(100,605), false));
+        addPNJ(new PNJ("Marie",new Vector(200,200)));
+        addPNJ(new PNJ("Andre",new Vector(100,100)));
 
         // Add Object
 
@@ -67,5 +63,14 @@ public class MainCanvasController extends DefaultCanvasController {
 
     }
 
-
+    @Override
+    protected void addIntroGameLoop() {
+        if(getOpacity() <= 0.1) {
+            new InfoBox("Night has fallen, you get back to the hotel");
+            setOpacity(1);
+            MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
+        }else {
+            setOpacity(getOpacity() - 0.01);
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package main.java.view.controller;
 
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.Serializable;
 

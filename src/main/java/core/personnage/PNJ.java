@@ -11,7 +11,7 @@ import main.java.core.visual.ui.InfoBox;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class PNJ extends Personnage implements Interactive {
+public class PNJ extends Personnage implements Interactive {
     public static int NIVEAU_FOLIE = 0;
 
     protected ArrayList<String> dialogs = new ArrayList<>();

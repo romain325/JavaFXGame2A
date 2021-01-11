@@ -13,7 +13,6 @@ public class Batiment1CanvasController extends DefaultCanvasController{
 
     Image background = new Image(getClass().getResourceAsStream("/img/Batiment1.png"));
 
-
     @Override
     protected Image getBackgroundImage() {
         return background;

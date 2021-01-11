@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.core.control.KeyBinder;
@@ -26,13 +27,12 @@ public class MainFrame extends Application {
     public void start(Stage stage){
         rootStage = stage;
 
-        setupFixedSize(rootStage); // CHANGE TO VAR
-
-        System.out.println(Files.exists(Paths.get("player.obj").toAbsolutePath()));
-        switchScene((Files.exists(Paths.get("player.obj").toAbsolutePath()) ? FRAME.KNOWN_PLAYER_START : FRAME.START_PAGE), false);
+        setupFixedSize(rootStage);
 
         rootStage.initStyle(StageStyle.UNDECORATED);
         rootStage.setTitle("SuperJeu");
+
+        switchScene((Files.exists(Paths.get("player.obj").toAbsolutePath()) ? FRAME.KNOWN_PLAYER_START : FRAME.START_PAGE), false);
 
         rootStage.show();
     }
@@ -59,7 +59,7 @@ public class MainFrame extends Application {
         }
 
         assert root != null;
-        Scene currentScene = new Scene(root, WIDTH, HEIGHT);
+        Scene currentScene = new Scene(root, WIDTH, HEIGHT, Color.BLACK);
 
         // setup keyListener
         if(listening){
@@ -67,6 +67,7 @@ public class MainFrame extends Application {
         }
 
         rootStage.setScene(currentScene);
+        rootStage.show();
     }
 
     public static void switchScene(FRAME frame, boolean listening){
