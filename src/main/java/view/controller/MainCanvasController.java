@@ -70,7 +70,7 @@ public class MainCanvasController extends DefaultCanvasController {
             setOpacity(1);
             navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
         }else {
-            setOpacity(getOpacity() - 0.01);
+            setOpacity(getOpacity() - 0.001);
         }
     }
 }

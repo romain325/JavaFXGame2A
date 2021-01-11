@@ -24,7 +24,7 @@ public abstract class GameLoop extends AnimationTimer {
 
     @Override
     public void handle(long l) {
-        if(l - lastFrame >= 30_000_000){
+        if(isRunning && l - lastFrame >= 30_000_000){
             tick();
             lastFrame = l;
         }

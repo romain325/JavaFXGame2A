@@ -94,7 +94,7 @@ public abstract class DefaultCanvasController implements Controller {
         return;
     }
 
-    protected void initCanvas() throws Exception {
+    protected void initCanvas() {
         gameCanvas.setHeight(MainFrame.HEIGHT);
         gameCanvas.setWidth(MainFrame.WIDTH);
     }
@@ -151,5 +151,10 @@ public abstract class DefaultCanvasController implements Controller {
     @Override
     public void setNavigator(Navigator navigator) {
         this.navigator = navigator;
+    }
+
+    @Override
+    public void stop(){
+        this.gameLoop.stop();
     }
 }

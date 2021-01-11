@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.core.control.KeyBinder;
 import main.java.view.controller.Controller;
+import main.java.view.controller.DefaultCanvasController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class Navigator implements Initializable {
     private final Stage rootStage;
+    private Controller currentController = null;
 
     public Navigator(Stage rootStage) {
         this.rootStage = rootStage;
@@ -43,7 +45,11 @@ public class Navigator implements Initializable {
                 ioException.printStackTrace();
             }
         }finally {
+            if(currentController != null) {
+                currentController.stop();
+            }
             ((Controller)fxmlLoader.getController()).setNavigator(this);
+            currentController = fxmlLoader.getController();
         }
 
         assert root != null;
@@ -55,7 +61,6 @@ public class Navigator implements Initializable {
         }
 
         rootStage.setScene(currentScene);
-        rootStage.show();
     }
 
     public void switchScene(FRAME frame, boolean listening){

@@ -9,4 +9,7 @@ import java.io.Serializable;
 
 public interface Controller extends Initializable {
     void setNavigator(Navigator navigator);
+    default void stop(){
+        return;
+    }
 }
