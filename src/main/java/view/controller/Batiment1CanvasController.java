@@ -1,8 +1,12 @@
 package main.java.view.controller;
 
 import javafx.scene.image.Image;
+import main.java.core.control.PlayerController;
 import main.java.core.logic.movement.Vector;
 import main.java.core.personnage.Joueur;
+import main.java.core.personnage.PNJ;
+import main.java.core.visual.ui.InfoBox;
+import main.java.view.FRAME;
 
 public class Batiment1CanvasController extends DefaultCanvasController{
 
@@ -20,6 +24,27 @@ public class Batiment1CanvasController extends DefaultCanvasController{
 
     @Override
     protected void initMapElements() {
+        addPNJ(new PNJ("Hotelier", new Vector(350,250)){
+            @Override
+            public void interact(PlayerController playerController) {
+                super.interact(playerController);
+                endDay();
+            }
+        });
         loadCollisionElements("batiment1");
+    }
+
+    private void endDay(){
+        // Checkpoint
+        getPlayer().save();
+        getPlayer().getAdvancement().addDay();
+
+        if(PNJ.NIVEAU_FOLIE > 7 || getPlayer().getAdvancement().hasSuspicion()){
+            navigator.switchScene(FRAME.GAME_OVER, false);
+            return;
+        }
+
+        new InfoBox("Day " + getPlayer().getAdvancement().getDayElapsed() + " in this weird town");
+        navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(getPlayer()));
     }
 }

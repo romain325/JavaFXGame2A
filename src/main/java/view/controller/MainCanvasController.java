@@ -41,7 +41,7 @@ public class MainCanvasController extends DefaultCanvasController {
 
         // Add Object
 
-        Item book = new Item("book",100,100, true, 2);
+        Item book = new Item("book",150,150, true, 2);
         SerializationManager.serializeObject(book.getNom() + ".obj", book);
         addItem(SerializationManager.<ItemDTO>deserializeObject("book.obj").getInstance());
 

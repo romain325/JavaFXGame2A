@@ -13,7 +13,7 @@ public class End extends Action {
 
     @Override
     public void interact() {
-        SerializationManager.serializeObject("player.obj", this.player.getJoueur());
+        this.player.getJoueur().save();
         Platform.exit();
     }
 }

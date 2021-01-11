@@ -40,7 +40,7 @@ public class GameAdvancement implements Serializable {
     public void addCollectedItem(Item item){
         collectedItems.add(item.getNom());
         nbHints += item.getHintValue();
-        if(nbHints > 10){
+        if(nbHints > 8){
             this.suspicion = true;
         }
     }

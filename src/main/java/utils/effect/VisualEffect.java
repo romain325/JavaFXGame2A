@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class VisualEffect {
-    public static void showTextProgressively(Pane pane) {
+    public static void showTextProgressively(Pane pane, int time) {
         if(pane.isVisible()) return;
         Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
@@ -23,7 +23,11 @@ public class VisualEffect {
         timeline.play();
     }
 
-    public static void hidePane(Pane pane){
+    public static void showTextProgressively(Pane pane) {
+        showTextProgressively(pane, 500);
+    }
+
+        public static void hidePane(Pane pane){
         pane.setVisible(false);
         for (var node: pane.getChildren()) {
             node.setVisible(false);

@@ -5,6 +5,7 @@ import main.java.core.logic.advancement.GameAdvancement;
 import main.java.core.logic.movement.Vector;
 import main.java.core.visual.sprite.AnimatedPlayerSprite;
 import main.java.utils.serialization.SerializableDTO;
+import main.java.utils.serialization.SerializationManager;
 
 import java.util.Collection;
 
@@ -62,4 +63,7 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
         return new JoueurDTO(this);
     }
 
+    public void save(){
+        SerializationManager.serializeObject("player.obj", this);
+    }
 }

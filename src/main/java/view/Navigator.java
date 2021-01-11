@@ -53,7 +53,7 @@ public class Navigator implements Initializable {
         }
 
         assert root != null;
-        Scene currentScene = new Scene(root, MainFrame.WIDTH, MainFrame.HEIGHT, Color.BLACK);
+        Scene currentScene = new Scene(root, MainFrame.WIDTH, MainFrame.HEIGHT, (frame == FRAME.PLAYABLE_CANVAS) ? Color.BLACK : Color.WHITE);
 
         // setup keyListener
         if(listening){
