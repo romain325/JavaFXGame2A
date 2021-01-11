@@ -19,59 +19,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class MainFrame extends Application {
-    private static Stage rootStage;
+    private Navigator navigator;
     public static final int WIDTH = 700;
     public static final int HEIGHT = 700;
 
     @Override
     public void start(Stage stage){
-        rootStage = stage;
+        navigator = new Navigator(stage);
+        setupFixedSize(navigator.getStage());
 
-        setupFixedSize(rootStage);
-
-        rootStage.initStyle(StageStyle.UNDECORATED);
-        rootStage.setTitle("SuperJeu");
-
-        switchScene((Files.exists(Paths.get("player.obj").toAbsolutePath()) ? FRAME.KNOWN_PLAYER_START : FRAME.START_PAGE), false);
-
-        rootStage.show();
-    }
-
-    public static void switchScene(FRAME frame, boolean listening, Controller controller){
-        Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFrame.class.getResource(frame.getLink()));
-
-        if(controller != null) {
-            fxmlLoader.setController(controller);
-        }
-        if(frame == FRAME.PLAYABLE_CANVAS && controller == null) throw new IllegalArgumentException("A playable Canvas should have a specified controller");
-
-        try {
-            root = fxmlLoader.load();
-        } catch (IOException e) {
-            fxmlLoader = new FXMLLoader(MainFrame.class.getResource(FRAME.START_PAGE.getLink()));
-            e.printStackTrace();
-            try {
-                root =fxmlLoader.load();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-
-        assert root != null;
-        Scene currentScene = new Scene(root, WIDTH, HEIGHT, Color.BLACK);
-
-        // setup keyListener
-        if(listening){
-            KeyBinder.initContext(currentScene);
-        }
-
-        rootStage.setScene(currentScene);
-        rootStage.show();
-    }
-
-    public static void switchScene(FRAME frame, boolean listening){
-        switchScene(frame, listening, null);
+        navigator.switchScene((Files.exists(Paths.get("player.obj").toAbsolutePath()) ? FRAME.KNOWN_PLAYER_START : FRAME.START_PAGE), false);
+        navigator.getStage().show();
     }
 
     private void setupFixedSize(Stage stage){

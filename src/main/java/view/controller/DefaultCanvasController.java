@@ -20,6 +20,7 @@ import main.java.core.visual.Visuel;
 import main.java.core.visual.map.Map;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
+import main.java.view.Navigator;
 import main.java.view.renderer.CanvasRenderer;
 import main.java.view.renderer.Rendable;
 
@@ -38,6 +39,7 @@ public abstract class DefaultCanvasController implements Controller {
     private final List<Interactive> interactivesElements = new LinkedList<>();
     private final List<Collisionable> collisionableElements = new LinkedList<>();
     private Joueur joueur = new Joueur("Null");
+    protected Navigator navigator;
 
     public DefaultCanvasController(Joueur player){
         this.setPlayer(player);
@@ -144,5 +146,10 @@ public abstract class DefaultCanvasController implements Controller {
     }
     public double getOpacity(){
         return root.getOpacity();
+    }
+
+    @Override
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
     }
 }

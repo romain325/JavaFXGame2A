@@ -17,6 +17,7 @@ import main.java.core.personnage.Joueur;
 import main.java.utils.effect.VisualEffect;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
+import main.java.view.Navigator;
 
 import java.net.URL;
 import java.sql.Time;
@@ -39,6 +40,8 @@ public class StartPage implements Controller {
     @FXML
     private Label lastText;
 
+    private Navigator navigator;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /*HIDING*/
@@ -54,10 +57,14 @@ public class StartPage implements Controller {
 
         /*BUTTON*/
         changeScene.setOnAction(actionEvent -> {
-            MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(new Joueur(fieldTxt.getText())));
+            navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(new Joueur(fieldTxt.getText())));
         });
         startEverything.setOnAction(actionEvent -> VisualEffect.showTextProgressively(firstText));
         validName.setOnAction(actionEvent -> VisualEffect.showTextProgressively(secondText));
     }
 
+    @Override
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
+    }
 }

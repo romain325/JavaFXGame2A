@@ -54,7 +54,7 @@ public class MainCanvasController extends DefaultCanvasController {
         addItem(new Item(SerializationManager.<ItemDTO>deserializeObject("hotel.obj")){
             @Override
             public void doAction(PlayerController playerController) {
-                MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
+                navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
             }
         });
 
@@ -68,7 +68,7 @@ public class MainCanvasController extends DefaultCanvasController {
         if(getOpacity() <= 0.1) {
             new InfoBox("Night has fallen, you get back to the hotel");
             setOpacity(1);
-            MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
+            navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
         }else {
             setOpacity(getOpacity() - 0.01);
         }

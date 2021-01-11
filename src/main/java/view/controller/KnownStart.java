@@ -1,19 +1,18 @@
 package main.java.view.controller;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.JoueurDTO;
 import main.java.utils.effect.VisualEffect;
 import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
 import main.java.view.MainFrame;
+import main.java.view.Navigator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +34,7 @@ public class KnownStart implements Controller{
     private Label lastText;
 
     private Joueur joueur;
+    private Navigator navigator;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,13 +53,17 @@ public class KnownStart implements Controller{
         startEverything.setOnAction(actionEvent -> VisualEffect.showTextProgressively(firstText));
         validIdentity.setOnAction(actionEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Is that you ? " + joueur.getNom() + " ?", ButtonType.YES, ButtonType.NO);
-            ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
-            if(ButtonType.YES.equals(result)){
-                MainFrame.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(this.joueur));
+            if(ButtonType.YES.equals(alert.showAndWait().orElse(ButtonType.NO))){
+                navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new MainCanvasController(this.joueur));
             }else {
                 VisualEffect.showTextProgressively(secondText);
             }
         });
-        startAgain.setOnAction(actionEvent -> MainFrame.switchScene(FRAME.START_PAGE, false));
+        startAgain.setOnAction(actionEvent -> navigator.switchScene(FRAME.START_PAGE, false));
+    }
+
+    @Override
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
     }
 }
