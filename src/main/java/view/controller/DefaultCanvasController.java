@@ -41,6 +41,10 @@ public abstract class DefaultCanvasController implements Controller {
     private Joueur joueur = new Joueur("Null");
     protected Navigator navigator;
 
+    /**
+     * Create a default canvas given the player that will be playing on it
+     * @param player The player who will be playing
+     */
     public DefaultCanvasController(Joueur player){
         this.setPlayer(player);
     }
@@ -67,14 +71,26 @@ public abstract class DefaultCanvasController implements Controller {
         gameLoop.start();
     }
 
+    /**
+     * Add visual element
+     * @param visuel Visuel element to render
+     */
     public void addMapElements(Visuel visuel){
         mapElements.add(visuel);
     }
 
+    /**
+     * Add an interactive elmement to the map
+     * @param interactive intereactive element to add
+     */
     public void addInteractiveElements(Interactive interactive){
         interactivesElements.add(interactive);
     }
 
+    /**
+     * Add a collisionable elemnt to the maop
+     * @param collisionable Collisionable element
+     */
     public void addCollisionableElements(Collisionable collisionable) {
         collisionableElements.add(collisionable);
     }
@@ -90,28 +106,53 @@ public abstract class DefaultCanvasController implements Controller {
         };
     }
 
+    /**
+     * Template method to add an action at the beginning of the tick in the gameloop
+     */
     protected void addIntroGameLoop(){
         return;
     }
 
+    /**
+     * Init canvas property
+     */
     protected void initCanvas() {
         gameCanvas.setHeight(MainFrame.HEIGHT);
         gameCanvas.setWidth(MainFrame.WIDTH);
     }
 
+    /**
+     * Let the player set the backgroundImage of the map
+     * @return the background Image
+     */
     protected abstract Image getBackgroundImage();
 
+    /**
+     * Get current player
+     * @return current player
+     */
     protected Joueur getPlayer() {
         return joueur;
     }
+
+    /**
+     * Set current player
+     * @param joueur current player
+     */
     protected void setPlayer(Joueur joueur) {
         this.joueur = joueur;
         addMapElements(getPlayer().getVisual());
     }
 
-
+    /**
+     * Init of all the map elements
+     */
     protected abstract void initMapElements();
 
+    /**
+     * Add an item (collisionable, interactive & visual) if the gameAdvancement allow it
+     * @param item wanted element
+     */
     protected void addItem(Item item){
         if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom()) && getPlayer().getAdvancement().getDayElapsed() >= item.getApparitionDay() ) return;
         if(item.hasCollision()) addCollisionableElements(item);
@@ -119,12 +160,20 @@ public abstract class DefaultCanvasController implements Controller {
         if(item.getVisual().isVisible()) addMapElements(item.getVisual());
     }
 
+    /**
+     * Add a new PNJ (Visuel, Interactive) if he's not dead
+     * @param pnj  pnj to add
+     */
     protected void addPNJ(PNJ pnj){
         if(pnj.getLifespan() < getPlayer().getAdvancement().getDayElapsed()) return;
         addMapElements(pnj.getVisual());
         addInteractiveElements(pnj);
     }
 
+    /**
+     * Load collisonable elemnts from a given file of coordinate
+     * @param filename file containing the coordinate of this map
+     */
     protected void loadCollisionElements(String filename){
         Scanner scanner = new Scanner(getClass().getResourceAsStream("/map/" + filename + ".pos"));
         int[] values = new int[4];
@@ -141,18 +190,34 @@ public abstract class DefaultCanvasController implements Controller {
         }
     }
 
+    /**
+     * Change scene opacity
+     * @param opacity new opacity
+     */
     public void setOpacity(double opacity){
         root.setOpacity(opacity);
     }
+
+    /**
+     * Get current scene opacity
+     * @return current scene opacity
+     */
     public double getOpacity(){
         return root.getOpacity();
     }
 
+    /**
+     * Set the navigator allowing you to navigate through the different scene
+     * @param navigator Navigator
+     */
     @Override
     public void setNavigator(Navigator navigator) {
         this.navigator = navigator;
     }
 
+    /**
+     * End the game loop
+     */
     @Override
     public void stop(){
         this.gameLoop.stop();

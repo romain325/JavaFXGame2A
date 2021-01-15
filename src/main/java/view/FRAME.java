@@ -9,7 +9,7 @@ public enum FRAME {
 
     private String link;
     FRAME(String link){
-        this.link = "/Vues/" + link + ".fxml";
+        this.link = "/views/" + link + ".fxml";
     }
 
     public String getLink() {

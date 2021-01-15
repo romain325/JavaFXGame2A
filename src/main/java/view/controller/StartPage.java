@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import main.java.core.control.InteractKey;
 import main.java.core.personnage.Joueur;
 import main.java.utils.effect.VisualEffect;
 import main.java.view.FRAME;
@@ -44,6 +45,18 @@ public class StartPage implements Controller {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*Add Elements*/
+        String[] keysInfo = new String[]{
+                "Little advice from me !",
+                "Use " + InteractKey.U_KEY.getKeyCode() + InteractKey.L_KEY.getKeyCode() + InteractKey.D_KEY.getKeyCode() + InteractKey.R_KEY.getKeyCode() + " to move",
+                InteractKey.INTERACT_KEY.getKeyCode() + " to interact with an element",
+                "And " + InteractKey.END_KEY.getKeyCode() +  " to exit the game!"
+        };
+
+        for(var e : keysInfo){
+            secondText.getChildren().add(secondText.getChildren().size()-1, new Label(e));
+        }
+
         /*HIDING*/
         VisualEffect.hidePane(firstText);
         VisualEffect.hidePane(secondText);

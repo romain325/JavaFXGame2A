@@ -1,5 +1,6 @@
 package main.java.view.controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import main.java.view.FRAME;
 import main.java.view.MainFrame;
 import main.java.view.Navigator;
 
+import javax.naming.Binding;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,8 +40,9 @@ public class KnownStart implements Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*PLAYER INFORMATION*/
         this.joueur = new Joueur(SerializationManager.<JoueurDTO>deserializeObject("player.obj"));
-        playerName.setText(".." + this.joueur.getNom() + " ??" );
+        playerName.textProperty().bind(Bindings.format("..%s ?? Am I right?", this.joueur.getNom()));
 
         /*HIDING*/
         VisualEffect.hidePane(firstText);

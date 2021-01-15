@@ -11,11 +11,8 @@ import main.java.core.visual.sprite.StaticItemSprite;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.serialization.SerializableDTO;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class Item implements Interactive, Consommable, Collisionable, Initializable, SerializableDTO<ItemDTO>, ItemProcuration{
     private boolean isBusy = false;
