@@ -13,7 +13,6 @@ import main.java.utils.serialization.SerializableDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -25,6 +24,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     private boolean hasCollision;
     private boolean hasIllimitedConso = false;
     private int hintVal = 0;
+    private int apparitionDay = 0;
 
     protected final Vector interactZone = new Vector(15,15);
 
@@ -32,46 +32,36 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     private String message = "";
     protected Visuel visual;
 
-    public Item(String nom){
-        this(nom, new StaticItemSprite(0,0,nom), false, 0);
+    public Item(String nom, int x,int y,String message, int hintVal, int apparitionDay){
+        this(nom, new StaticItemSprite(x,y,nom), message, true, hintVal, apparitionDay);
     }
 
-    public Item(String nom, boolean hasCollision){
-        this(nom, new StaticItemSprite(0,0,nom), hasCollision, 0);
-    }
-
-    public Item(String nom, int x,int y,boolean hasCollision, int hintVal){
-        this(nom, new StaticItemSprite(x,y,nom), hasCollision, hintVal);
+    public Item(String nom, int x,int y,String message,boolean hasCollision, int hintVal, int apparitionDay){
+        this(nom, new StaticItemSprite(x,y,nom), message, hasCollision, hintVal, apparitionDay);
     }
 
     public Item(ItemDTO dto) {
-        this(dto.getNom(),StaticItemSprite.factory(dto.getPosition(), dto.getWidth(), dto.getHeight(), dto.getNom()),dto.getMessage(),dto.hasCollision(), dto.hasIllimitedConsommation(), dto.getHintValue());
+        this(dto.getNom(),StaticItemSprite.factory(dto.getPosition(), dto.getWidth(), dto.getHeight(), dto.getNom()),dto.getMessage(),dto.hasCollision(), dto.hasIllimitedConsommation(), dto.getHintValue(), dto.getApparitionDay());
     }
 
-    protected Item(String nom, StaticItemSprite sprite, boolean hasCollision, int hintVal){
+    protected Item(String nom, StaticItemSprite sprite, String message,boolean hasCollision, int hintVal, int apparitionDay){
         this.nom = nom;
         this.visual = sprite;
         this.hasCollision = hasCollision;
         this.hintVal = hintVal;
-
-        URL path = getClass().getResource("/dialog/item/" + this.getNom() + ".txt");
-        if(path != null) {
-            try {
-                this.message = new Scanner(new FileReader(path.getPath())).nextLine().replace("\\n", "\n");
-            } catch (FileNotFoundException ignored) {
-
-            }
-        }
+        this.apparitionDay = apparitionDay;
+        this.message = message;
         initialize(null,null);
     }
 
-    protected Item(String nom, StaticItemSprite sprite, String message, boolean hasCollision, boolean hasIllimitedConso, int hintVal){
+    protected Item(String nom, StaticItemSprite sprite, String message, boolean hasCollision, boolean hasIllimitedConso, int hintVal, int apparitionDay){
         this.nom = nom;
         this.visual = sprite;
         this.hasCollision = hasCollision;
         this.message = message;
         this.hasIllimitedConso = hasIllimitedConso;
         this.hintVal = hintVal;
+        this.apparitionDay = apparitionDay;
         initialize(null,null);
     }
 
@@ -151,6 +141,11 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
         return hintVal;
     }
 
+    public void setHintValue(int hintValue) {
+        this.hintVal = hintValue;
+    }
+
+
     @Override
     public String getMessage() {
         return message;
@@ -186,4 +181,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
         return;
     }
 
+    public int getApparitionDay(){
+        return this.apparitionDay;
+    }
 }

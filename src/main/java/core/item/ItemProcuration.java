@@ -11,4 +11,5 @@ public interface ItemProcuration {
     String getNom();
     boolean hasCollision();
     int getHintValue();
+    int getApparitionDay();
 }

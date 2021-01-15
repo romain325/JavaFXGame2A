@@ -3,10 +3,10 @@ Maybe because of this presence behind you ...
 But you still look through the window
 You ear a noise and suddenly see the hotel man,
 he doesn't seem really normal
-You want to ask him to let him sleep
+You want to ask him to let you sleep
 but he pull out a knife and throw it at you
 "Farewell {{name}}, you had 7 days"
-"all of them are and so you'll be too"
+"all of them are dead and so you'll be"
 Is that it ? You died ? Is the narrator that lazy ?
 Or maybe a bit tired ?
 While you're thinking out of the box he continues:
@@ -16,3 +16,4 @@ Nothing is holding you anymore except this instance
 He goes away of the room, nothing holds you anymore
 The garbage collector is coming, you hear him ...
 Farewell {{name}} ...
+Nobody will remind you

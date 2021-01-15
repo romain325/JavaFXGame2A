@@ -16,6 +16,7 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
     private final boolean hasIllimitedCollision;
     private final boolean hasSprite;
     private final int hintVal;
+    private final int apparitionDay;
 
     public ItemDTO(Item item) {
         this.pos = item.getPosition();
@@ -27,6 +28,7 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
         hasIllimitedCollision = item.hasIllimitedConsommation();
         hasSprite = item.getVisual().isVisible();
         hintVal = item.getHintValue();
+        apparitionDay = item.getApparitionDay();
     }
 
     @Override
@@ -67,6 +69,11 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
     @Override
     public int getHintValue() {
         return hintVal;
+    }
+
+    @Override
+    public int getApparitionDay() {
+        return apparitionDay;
     }
 
     public boolean hasSprite() {

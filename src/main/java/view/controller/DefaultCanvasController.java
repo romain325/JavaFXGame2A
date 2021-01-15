@@ -113,7 +113,7 @@ public abstract class DefaultCanvasController implements Controller {
     protected abstract void initMapElements();
 
     protected void addItem(Item item){
-        if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom())) return;
+        if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom()) && getPlayer().getAdvancement().getDayElapsed() >= item.getApparitionDay() ) return;
         if(item.hasCollision()) addCollisionableElements(item);
         if(item.isInteractive()) addInteractiveElements(item);
         if(item.getVisual().isVisible()) addMapElements(item.getVisual());
