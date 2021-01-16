@@ -1,8 +1,6 @@
 package main.java.core.item;
 
-import main.java.core.logic.collision.Collisionable;
 import main.java.core.visual.sprite.StaticItemSprite;
-import main.java.core.visual.ui.InfoBox;
 
 public class InteractZone extends Item {
     public InteractZone(String nom,int x, int y, int w, int h, String message,boolean hasCollision, boolean hasUnlimitedConso) {

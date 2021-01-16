@@ -24,8 +24,8 @@ public class Interact extends Action {
 
         // Code
         try {
-            System.out.println(player.getJoueur().getPosition());
-            player.getCollisionner().getInteractiveObject(player.getJoueur().getVisual()).interact(player);
+            System.out.println(getPlayer().getJoueur().getPosition());
+            getPlayer().getCollisionner().getInteractiveObject(getPlayer().getJoueur().getVisual()).interact(getPlayer());
         } catch (InstanceNotFoundException e) {
             System.out.println(e.getMessage());
             return;

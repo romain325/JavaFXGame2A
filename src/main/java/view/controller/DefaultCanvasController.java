@@ -1,24 +1,21 @@
 package main.java.view.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import main.java.core.control.PlayerController;
 import main.java.core.item.Item;
 import main.java.core.logic.collision.Collisionable;
-import main.java.core.logic.collision.Collisionner;
+import main.java.core.logic.collision.Collisioner;
 import main.java.core.logic.GameLoop;
 import main.java.core.logic.Interactive;
 import main.java.core.logic.collision.InvisibleCollisionable;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.Visuel;
 import main.java.core.visual.map.Map;
-import main.java.view.FRAME;
 import main.java.view.MainFrame;
 import main.java.view.Navigator;
 import main.java.view.renderer.CanvasRenderer;
@@ -65,7 +62,7 @@ public abstract class DefaultCanvasController implements Controller {
         }
 
         gameMap = new Map(getBackgroundImage(), mapElements, interactivesElements, collisionableElements);
-        playerController = new PlayerController(getPlayer(), new Collisionner(gameMap, (int)gameCanvas.getWidth(), (int)gameCanvas.getHeight()));
+        playerController = new PlayerController(getPlayer(), new Collisioner(gameMap, (int)gameCanvas.getWidth(), (int)gameCanvas.getHeight()));
         renderer = new CanvasRenderer(gameCanvas, gameMap);
 
         gameLoop.start();
@@ -154,7 +151,10 @@ public abstract class DefaultCanvasController implements Controller {
      * @param item wanted element
      */
     protected void addItem(Item item){
-        if(getPlayer().getAdvancement().getCollectedItems().contains(item.getNom()) && getPlayer().getAdvancement().getDayElapsed() >= item.getApparitionDay() ) return;
+        if(
+                getPlayer().getAdvancement().getCollectedItems().contains(item.getNom()) ||
+                getPlayer().getAdvancement().getDayElapsed() < item.getApparitionDay()
+        ) return;
         if(item.hasCollision()) addCollisionableElements(item);
         if(item.isInteractive()) addInteractiveElements(item);
         if(item.getVisual().isVisible()) addMapElements(item.getVisual());

@@ -30,6 +30,8 @@ public abstract class GameLoop extends AnimationTimer {
         }
     }
 
-    // Injection
+    /**
+     * Action to do on each loop
+     */
     public abstract void tick();
 }

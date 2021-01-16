@@ -47,7 +47,7 @@ public class GameOver implements Controller {
 
         VisualEffect.hidePane(rootText);
 
-        VisualEffect.showTextProgressively(rootText, 1000);
+        VisualEffect.showElementProgressively(rootText, 1000);
 
         new File("player.obj").delete();
     }

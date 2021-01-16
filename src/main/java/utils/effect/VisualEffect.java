@@ -7,7 +7,12 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class VisualEffect {
-    public static void showTextProgressively(Pane pane, int time) {
+    /**
+     * Show elements of a pane progressively given a timespan
+     * @param pane given pane
+     * @param time timespan between apparition
+     */
+    public static void showElementProgressively(Pane pane, int time) {
         if(pane.isVisible()) return;
         Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
@@ -23,11 +28,19 @@ public class VisualEffect {
         timeline.play();
     }
 
-    public static void showTextProgressively(Pane pane) {
-        showTextProgressively(pane, 500);
+    /**
+     * Show elements of a pane progressively
+     * @param pane given pane
+     */
+    public static void showElementProgressively(Pane pane) {
+        showElementProgressively(pane, 500);
     }
 
-        public static void hidePane(Pane pane){
+    /**
+     * Hide a pane with all hid children
+     * @param pane given pane
+     */
+    public static void hidePane(Pane pane){
         pane.setVisible(false);
         for (var node: pane.getChildren()) {
             node.setVisible(false);

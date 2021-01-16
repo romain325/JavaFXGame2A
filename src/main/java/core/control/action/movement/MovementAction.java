@@ -2,25 +2,34 @@ package main.java.core.control.action.movement;
 
 import main.java.core.control.PlayerController;
 import main.java.core.control.action.Action;
-import main.java.core.logic.movement.Vector;
-import main.java.core.personnage.Joueur;
+import main.java.utils.Vector;
 
 public abstract class MovementAction extends Action {
     public MovementAction(PlayerController player) {
         super(player);
     }
 
+    /**
+     * Move the player to the specified place
+     * @param newPos new player positio
+     */
     public void moveTo(Vector newPos){
-        this.player.getJoueur().setCoord(newPos);
+        getPlayer().getJoueur().setCoord(newPos);
     }
+
+    /**
+     * get adapated movement vector
+     * @param velocity player velocity
+     * @return adapted movement vector
+     */
     protected abstract Vector getMovementVector(int velocity);
 
     @Override
     public void interact() {
-        Vector finalPos = player.getJoueur().getPosition().sum(this.getMovementVector(this.player.getJoueur().getSpeed()));
+        Vector finalPos = getPlayer().getJoueur().getPosition().sum(this.getMovementVector(this.getPlayer().getJoueur().getSpeed()));
         if(
-            player.getCollisionner().isOutOfMapLimit(finalPos, player.getJoueur().getVisual()) ||
-            player.getCollisionner().hasNextPosCollision(finalPos, player.getJoueur().getVisual())
+                getPlayer().getCollisionner().isOutOfMapLimit(finalPos, getPlayer().getJoueur().getVisual()) ||
+                getPlayer().getCollisionner().hasNextPosCollision(finalPos, getPlayer().getJoueur().getVisual())
         ){
             return;
         }

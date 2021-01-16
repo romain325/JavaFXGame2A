@@ -2,10 +2,8 @@ package main.java.core.personnage;
 
 import main.java.core.control.PlayerController;
 import main.java.core.logic.Interactive;
-import main.java.core.logic.movement.Vector;
-import main.java.core.visual.sprite.StaticItemSprite;
+import main.java.utils.Vector;
 import main.java.core.visual.sprite.StaticPlayerSprite;
-import main.java.core.visual.ui.DialogBox;
 import main.java.core.visual.ui.InfoBox;
 
 import java.util.ArrayList;

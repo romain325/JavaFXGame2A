@@ -1,6 +1,6 @@
 package main.java.core.personnage;
 
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
 public class Personnage {

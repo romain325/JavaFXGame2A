@@ -2,18 +2,15 @@ package main.java.view.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import main.java.core.control.PlayerController;
 import main.java.core.item.InteractZone;
 import main.java.core.item.Item;
 import main.java.core.item.ItemDTO;
-import main.java.core.logic.GameLoop;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
-import main.java.view.MainFrame;
 
 public class MainCanvasController extends DefaultCanvasController {
 
@@ -60,12 +57,7 @@ public class MainCanvasController extends DefaultCanvasController {
 
         Item hotel = new InteractZone("hotel", 615,195, 40,1,"You enter the hotel\nThe hall seems huge and totally disproportional\nDo you think the dev is tired or this is wanted ?", true, true);
         SerializationManager.serializeObject(hotel.getNom() + ".obj", hotel);
-        addItem(new Item(SerializationManager.deserializeObject("hotel.obj")){
-            @Override
-            public void doAction(PlayerController playerController) {
-                navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()));
-            }
-        });
+        addItem(new Item(SerializationManager.deserializeObject("hotel.obj"), playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
 
 
         loadCollisionElements("main");

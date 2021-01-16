@@ -2,16 +2,9 @@ package main.java.core.visual.sprite;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.visual.Visuel;
 import main.java.view.renderer.ZIndex;
-
-import javax.naming.NameNotFoundException;
-import java.io.File;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class StaticItemSprite extends Visuel {
     private final Image sprite;

@@ -4,6 +4,12 @@ import java.io.*;
 import java.util.stream.Stream;
 
 public class SerializationManager {
+    /**
+     * serialize a given object
+     * @param filename file where object while be saved
+     * @param obj the object to serialize
+     * @param <T> the object type
+     */
     public static <T extends SerializableDTO> void serializeObject(String filename, T obj){
         try{
             ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(filename));
@@ -14,6 +20,12 @@ public class SerializationManager {
         }
     }
 
+    /**
+     * deserialize an object
+     * @param filename file where the object is stored
+     * @param <T> type of the object to deserialize
+     * @return deserialized object
+     */
     public static <T extends DTOElement> T deserializeObject(String filename){
         try {
             return deserializeStream(new FileInputStream(filename));
@@ -22,10 +34,22 @@ public class SerializationManager {
         }
     }
 
+    /**
+     * Deserialize an object from resources
+     * @param filename file where the object is serialized in the resources
+     * @param <T> type of the serialized oibject
+     * @return deserialized object
+     */
     public static <T extends DTOElement> T deserializeObjectFromResource(String filename){
         return deserializeStream(SerializationManager.class.getResourceAsStream(filename));
     }
 
+    /**
+     * deserialize an object from InputStream
+     * @param objStream InputStream containing a serialized object
+     * @param <T> type of the serialized object
+     * @return deserialized object
+     */
     private static <T extends DTOElement> T deserializeStream(InputStream objStream){
         try {
             ObjectInputStream obj = new ObjectInputStream(objStream);

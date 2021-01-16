@@ -1,23 +1,16 @@
 package main.java.view.controller;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.util.Duration;
 import main.java.core.control.PlayerController;
 import main.java.core.item.InteractZone;
 import main.java.core.item.Item;
 import main.java.core.item.ItemDTO;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
-
-import java.lang.reflect.Method;
 
 public class Batiment1CanvasController extends DefaultCanvasController{
 
@@ -38,9 +31,7 @@ public class Batiment1CanvasController extends DefaultCanvasController{
         addPNJ(new PNJ("Hotelier", new Vector(350,250)){
             @Override
             public void interact(PlayerController playerController) {
-                new Timeline(new KeyFrame(Duration.seconds(2), actionEvent -> {
-                    endDay();
-                })).play();
+                endDay();
             }
         });
 

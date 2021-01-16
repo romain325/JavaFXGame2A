@@ -6,10 +6,6 @@ import main.java.core.control.action.movement.Down;
 import main.java.core.control.action.movement.Left;
 import main.java.core.control.action.movement.Right;
 import main.java.core.control.action.movement.Up;
-import main.java.core.logic.movement.Vector;
-import main.java.core.personnage.Joueur;
-
-import java.lang.reflect.InvocationTargetException;
 
 public enum InteractKey {
     U_KEY(KeyCode.Z, Up.class),
@@ -25,14 +21,32 @@ public enum InteractKey {
     private final KeyCode code;
     private final Class action;
 
+    /**
+     * get enum keycode
+     * @return KeyCode
+     */
     public KeyCode getKeyCode(){
         return this.code;
     }
 
-    public Action getAction(PlayerController player) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        return (Action) this.action.getConstructor(PlayerController.class).newInstance(player);
+    /**
+     * get an action instance from an Interactkey
+     * @param player Ingame player controlelr
+     * @return instance of an action
+     */
+    public Action getAction(PlayerController player) {
+        try{
+            return (Action) this.action.getConstructor(PlayerController.class).newInstance(player);
+        }catch(Exception e){
+            return new Idle(player);
+        }
     }
 
+    /**
+     * get the correlated interact key from a KeyCode
+     * @param code KeyCode
+     * @return correlated InteractKey
+     */
     public static InteractKey getInteractKey(KeyCode code){
         for (InteractKey key :  InteractKey.values()){
             if(key.getKeyCode() == code){

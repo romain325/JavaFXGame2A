@@ -2,7 +2,7 @@ package main.java.core.visual.sprite;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
 public class StaticPlayerSprite extends VisuelPersonnage {

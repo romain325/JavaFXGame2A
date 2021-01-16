@@ -1,9 +1,7 @@
 package main.java.core.visual;
 
-import com.sun.prism.paint.Paint;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import main.java.core.logic.movement.Vector;
 import main.java.view.renderer.ZIndex;
 
 public class VisuelPersonnage extends Visuel {

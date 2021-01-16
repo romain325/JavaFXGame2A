@@ -1,8 +1,7 @@
 package main.java.core.visual;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.view.renderer.Rendable;
 import main.java.view.renderer.ZIndex;
 

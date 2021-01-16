@@ -1,10 +1,7 @@
 package main.java.core.item;
 
-import main.java.core.logic.Interactive;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.utils.serialization.DTOElement;
-
-import java.io.Serializable;
 
 public class ItemDTO implements ItemProcuration, DTOElement<Item> {
     private final Vector pos;
@@ -76,6 +73,10 @@ public class ItemDTO implements ItemProcuration, DTOElement<Item> {
         return apparitionDay;
     }
 
+    /**
+     * Getter
+     * @return value
+     */
     public boolean hasSprite() {
         return hasSprite;
     }

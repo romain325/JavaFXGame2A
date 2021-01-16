@@ -2,9 +2,8 @@ package main.java.core.visual.sprite;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import main.java.core.control.KeyBinder;
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 import main.java.core.visual.VisuelPersonnage;
 
 public class AnimatedPlayerSprite extends VisuelPersonnage {

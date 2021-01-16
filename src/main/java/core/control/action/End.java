@@ -13,7 +13,7 @@ public class End extends Action {
 
     @Override
     public void interact() {
-        this.player.getJoueur().save();
+        this.getPlayer().getJoueur().save();
         Platform.exit();
     }
 }

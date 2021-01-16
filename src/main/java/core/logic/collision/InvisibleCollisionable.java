@@ -1,6 +1,6 @@
 package main.java.core.logic.collision;
 
-import main.java.core.logic.movement.Vector;
+import main.java.utils.Vector;
 
 public class InvisibleCollisionable implements Collisionable{
     private final Vector position;

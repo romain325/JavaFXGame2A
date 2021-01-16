@@ -1,6 +1,6 @@
 package main.java.core.personnage;
 
-import main.java.core.logic.advancement.GameAdvancement;
+import main.java.core.logic.GameAdvancement;
 import main.java.utils.serialization.DTOElement;
 
 public class JoueurDTO implements JoueurProcuration, DTOElement<Joueur> {
