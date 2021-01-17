@@ -37,6 +37,8 @@ public abstract class DefaultCanvasController implements Controller {
     private final List<Collisionable> collisionableElements = new LinkedList<>();
     private Joueur joueur = new Joueur("Null");
     protected Navigator navigator;
+    private PlayerController playerController;
+    private Map gameMap;
 
     /**
      * Create a default canvas given the player that will be playing on it
@@ -45,10 +47,6 @@ public abstract class DefaultCanvasController implements Controller {
     public DefaultCanvasController(Joueur player){
         this.setPlayer(player);
     }
-
-    private PlayerController playerController;
-
-    private Map gameMap;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,6 +90,9 @@ public abstract class DefaultCanvasController implements Controller {
         collisionableElements.add(collisionable);
     }
 
+    /**
+     * Init the game loop
+     */
     private void initGameLoop(){
         gameLoop = new GameLoop() {
             @Override

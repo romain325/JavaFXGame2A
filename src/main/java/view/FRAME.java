@@ -8,10 +8,15 @@ public enum FRAME {
     ;
 
     private String link;
+
     FRAME(String link){
         this.link = "/views/" + link + ".fxml";
     }
 
+    /**
+     * Get related link to page
+     * @return link to page
+     */
     public String getLink() {
         return link;
     }

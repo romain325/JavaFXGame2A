@@ -52,6 +52,10 @@ public class GameOver implements Controller {
         new File("player.obj").delete();
     }
 
+    /**
+     * Load the save from a specified source
+     * @param source data soruce
+     */
     private void loadSave(String source){
         try {
             Scanner scanner = new Scanner(getClass().getResourceAsStream("/dialog/gameOver/" + source + ".txt"));

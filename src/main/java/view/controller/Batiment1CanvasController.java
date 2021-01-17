@@ -44,6 +44,9 @@ public class Batiment1CanvasController extends DefaultCanvasController{
         loadCollisionElements("batiment1");
     }
 
+    /**
+     * end the day
+     */
     private void endDay(){
         // Checkpoint
         getPlayer().save();

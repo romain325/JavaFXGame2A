@@ -32,6 +32,10 @@ public class MainFrame extends Application {
         navigator.getStage().show();
     }
 
+    /**
+     * setup the fixed size of the stage
+     * @param stage stage which will be fixed
+     */
     private void setupFixedSize(Stage stage){
         stage.setMinHeight(MainFrame.HEIGHT);
         stage.setMaxHeight(MainFrame.HEIGHT);
