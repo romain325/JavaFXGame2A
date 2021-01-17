@@ -1,13 +1,13 @@
 package main.java.core.personnage;
 
-import main.java.core.logic.GameAdvancement;
+import main.java.core.logic.GameProgression;
 import main.java.utils.Vector;
 import main.java.core.visual.sprite.AnimatedPlayerSprite;
 import main.java.utils.serialization.SerializableDTO;
 import main.java.utils.serialization.SerializationManager;
 
 public class Joueur extends Personnage implements JoueurProcuration, SerializableDTO<JoueurDTO> {
-    private GameAdvancement gameAdvancement = new GameAdvancement();
+    private GameProgression gameProgression = new GameProgression();
     private int speed;
 
     public Joueur(String nom, int speed) {
@@ -22,44 +22,26 @@ public class Joueur extends Personnage implements JoueurProcuration, Serializabl
 
     public Joueur(JoueurDTO dto){
         this(dto.getNom(), dto.getSpeed());
-        this.gameAdvancement = dto.getAdvancement();
-        PNJ.NIVEAU_FOLIE = gameAdvancement.getDayElapsed();
-    }
-
-    public void setCoord(int x, int y){
-        setX(x);
-        setY(y);
-    }
-
-    public void setCoord(Vector pos){
-        setCoord(pos.getX(), pos.getY());
+        this.gameProgression = dto.getAdvancement();
+        PNJ.NIVEAU_FOLIE = gameProgression.getDayElapsed();
     }
 
     @Override
-    public void setX(int x) {
-        //TODO Add collision Check
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        //TODO Add collision Check, maybve not here
-        super.setY(y);
-    }
-
     public int getSpeed(){
         return this.speed;
     }
 
     @Override
-    public GameAdvancement getAdvancement() {
-        return gameAdvancement;
+    public GameProgression getAdvancement() {
+        return gameProgression;
     }
 
+    @Override
     public JoueurDTO getDTO(){
         return new JoueurDTO(this);
     }
 
+    @Override
     public void save(){
         SerializationManager.serializeObject("player.obj", this);
     }

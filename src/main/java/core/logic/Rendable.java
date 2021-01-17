@@ -1,4 +1,4 @@
-package main.java.view.renderer;
+package main.java.core.logic;
 
 import javafx.scene.canvas.GraphicsContext;
 

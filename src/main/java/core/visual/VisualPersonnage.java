@@ -2,18 +2,17 @@ package main.java.core.visual;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import main.java.view.renderer.ZIndex;
 
-public class VisuelPersonnage extends Visuel {
+public class VisualPersonnage extends Visual {
     private boolean debugMode = false;
     private Color debugColor;
     private static final byte PERSONNAGE_HEIGHT = 16;
     private static final byte PERSONNAGE_WIDTH = 16;
 
-    public VisuelPersonnage(int x, int y) {
+    public VisualPersonnage(int x, int y) {
         super(x, y, PERSONNAGE_HEIGHT, PERSONNAGE_WIDTH, ZIndex.CHARACTER);
     }
-    public VisuelPersonnage(int x, int y, Color debugColor) {
+    public VisualPersonnage(int x, int y, Color debugColor) {
         this(x, y);
         this.debugMode = true;
         this.debugColor = debugColor;

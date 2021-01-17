@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class PNJ extends Personnage implements Interactive {
     public static int NIVEAU_FOLIE = 0;
 
-    protected ArrayList<String> dialogs = new ArrayList<>();
-    protected int lifespan;
+    protected final ArrayList<String> dialogs = new ArrayList<>();
 
     private boolean isBusy = false;
 
@@ -34,14 +33,13 @@ public class PNJ extends Personnage implements Interactive {
         }catch (Exception e){
             this.dialogs.add("Error Opening file");
         }
-        lifespan = dialogs.size();
     }
 
     public PNJ(String nom, Vector vector) {
         this(nom, vector, true);
     }
 
-        @Override
+    @Override
     public void interact(PlayerController playerController) {
         if(isBusy()) return;
         isBusy = true;
@@ -64,6 +62,10 @@ public class PNJ extends Personnage implements Interactive {
         return true;
     }
 
+    /**
+     * return the adapted dialog depending of the day
+     * @return adapted dialog
+     */
     public String getDialog(){
         return dialogs.get(NIVEAU_FOLIE);
     }
@@ -78,7 +80,11 @@ public class PNJ extends Personnage implements Interactive {
         return super.getVisual().getWidth();
     }
 
+    /**
+     * get pnj lifespan
+     * @return pnj lifespan
+     */
     public int getLifespan(){
-        return lifespan;
+        return dialogs.size();
     }
 }

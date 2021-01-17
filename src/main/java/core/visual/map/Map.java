@@ -3,7 +3,7 @@ package main.java.core.visual.map;
 import javafx.scene.image.Image;
 import main.java.core.logic.collision.Collisionable;
 import main.java.core.logic.Interactive;
-import main.java.view.renderer.Rendable;
+import main.java.core.logic.Rendable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,26 +27,46 @@ public class Map {
         this(background, new LinkedList<>(), new LinkedList<>(), new LinkedList<>());
     }
 
-    public List<Rendable> getElements() {
+    /**
+     * Get rendable Elements
+     * @return rendable elemnts
+     */
+    public List<Rendable> getRendableElements() {
         return elements;
     }
 
+    /**
+     * get Interactive Elements
+     * @return interactive elemnts
+     */
     public List<Interactive> getInteractives() { return interactives; }
 
+    /**
+     * get collisionable Elements
+     * @return collisionable elements
+     */
     public List<Collisionable> getCollisionables() { return collisionables; }
 
+    /**
+     * get background image
+     * @return background image
+     */
     public Image getBackground() {
         return background;
     }
 
-    public void addVisualElement(Rendable v){
-        elements.add(v);
-    }
-
+    /**
+     * Set the display information
+     * @param rendable display informations
+     */
     public static void setMessageToDisplay(Rendable rendable){
         MESSAGE_DISPLAY = rendable;
     }
 
+    /**
+     * get current display information
+     * @return diplay information
+     */
     public Rendable getMessageDisplay(){
         return MESSAGE_DISPLAY;
     }

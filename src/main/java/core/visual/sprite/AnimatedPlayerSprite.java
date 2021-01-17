@@ -4,9 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.java.core.control.KeyBinder;
 import main.java.utils.Vector;
-import main.java.core.visual.VisuelPersonnage;
+import main.java.core.visual.VisualPersonnage;
 
-public class AnimatedPlayerSprite extends VisuelPersonnage {
+public class AnimatedPlayerSprite extends VisualPersonnage implements Sprite {
 
     private final int nbFramePerAnim = 3;
     private Image standingSprite;
@@ -27,10 +27,11 @@ public class AnimatedPlayerSprite extends VisuelPersonnage {
     @Override
     public void render(GraphicsContext context) {
         super.render(context);
-        context.drawImage(getCurrentSprite(), this.getCoordX(), this.getCoordY());
+        context.drawImage(getSprite(), this.getCoordX(), this.getCoordY());
     }
 
-    private Image getCurrentSprite(){
+    @Override
+    public Image getSprite(){
         switch (KeyBinder.getCurrentInteract()){
             case D_KEY:
                 return sprites[0][getTick()];
@@ -47,10 +48,18 @@ public class AnimatedPlayerSprite extends VisuelPersonnage {
         }
     }
 
+    /**
+     * Get current tick
+     * @return increment tick and get current
+     */
     private int getTick(){
         addToTick();
         return tick;
     }
+
+    /**
+     * Algorithm used to increment tick
+     */
     protected void addToTick(){
         this.tick = (this.tick + 1) % nbFramePerAnim;
     }

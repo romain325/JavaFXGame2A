@@ -7,10 +7,11 @@ import main.java.core.logic.Consommable;
 import main.java.core.logic.Interactive;
 import main.java.core.logic.collision.Collisionable;
 import main.java.utils.Vector;
-import main.java.core.visual.Visuel;
+import main.java.core.visual.Visual;
 import main.java.core.visual.sprite.StaticItemSprite;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.serialization.SerializableDTO;
+import main.java.utils.serialization.SerializationManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +29,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
 
     private final String nom;
     private final String message;
-    protected Visuel visual;
+    protected Visual visual;
     private Action action = playerController -> {};
 
     public Item(String nom, int x,int y,String message, int hintVal, int apparitionDay){
@@ -87,7 +88,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
      * getter
      * @return val
      */
-    public Visuel getVisual(){
+    public Visual getVisual(){
         return this.visual;
     }
 
@@ -242,5 +243,10 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
      */
     public int getApparitionDay(){
         return this.apparitionDay;
+    }
+
+    @Override
+    public void save() {
+        SerializationManager.serializeObject(this.getNom() + ".obj", this);
     }
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GameAdvancement implements Serializable {
+public class GameProgression implements Serializable {
     private boolean suspicion = false;
     private int dayElapsed = 0;
     private Set<String> collectedItems = new HashSet<>();

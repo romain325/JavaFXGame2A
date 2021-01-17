@@ -38,7 +38,7 @@ public class Batiment1CanvasController extends DefaultCanvasController{
         //Add Object
         Item registeryHotel = new InteractZone("registeryHotel", 655,20, 20,20,"A registery of the hotel staff\nYou recognize the receptionist !\nHis name is \"Sir Alfred\"", true, false);
         registeryHotel.setHintValue(1);
-        SerializationManager.serializeObject(registeryHotel.getNom() + ".obj", registeryHotel);
+        registeryHotel.save();
         addItem(SerializationManager.<ItemDTO>deserializeObject("registeryHotel.obj").getInstance());
 
         loadCollisionElements("batiment1");

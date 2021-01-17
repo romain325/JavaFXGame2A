@@ -10,7 +10,7 @@ public class InfoBox extends MessageBox{
     }
 
     @Override
-    protected Image getImage() {
+    protected Image getBackgroundImage() {
         return IMAGE;
     }
 }

@@ -1,17 +1,17 @@
 package main.java.core.personnage;
 
-import main.java.core.logic.GameAdvancement;
+import main.java.core.logic.GameProgression;
 import main.java.utils.serialization.DTOElement;
 
 public class JoueurDTO implements JoueurProcuration, DTOElement<Joueur> {
     private final String name;
     private final int velocity;
-    private final GameAdvancement gameAdvancement;
+    private final GameProgression gameProgression;
 
     public JoueurDTO(Joueur joueur) {
         this.name = joueur.getNom();
         this.velocity = joueur.getSpeed();
-        this.gameAdvancement = joueur.getAdvancement();
+        this.gameProgression = joueur.getAdvancement();
     }
 
     @Override
@@ -25,8 +25,8 @@ public class JoueurDTO implements JoueurProcuration, DTOElement<Joueur> {
     }
 
     @Override
-    public GameAdvancement getAdvancement() {
-        return gameAdvancement;
+    public GameProgression getAdvancement() {
+        return gameProgression;
     }
 
     @Override

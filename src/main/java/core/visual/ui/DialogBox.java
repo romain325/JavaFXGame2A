@@ -11,7 +11,7 @@ public class DialogBox extends MessageBox{
     }
 
     @Override
-    protected Image getImage() {
+    protected Image getBackgroundImage() {
         return IMAGE;
     }
 }

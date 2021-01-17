@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.java.core.visual.map.Map;
 
-public abstract class MessageBox extends VisuelUI{
+public abstract class MessageBox extends VisualUI {
 
     protected final static int DEFAULT_X = 20;
     protected final static int DEFAULT_Y = 20;
@@ -25,9 +25,13 @@ public abstract class MessageBox extends VisuelUI{
         if(System.currentTimeMillis() > lifespan){
             Map.setMessageToDisplay(null);
         }
-        context.drawImage(getImage(), getCoordX(), getCoordY(), getWidth(), getHeight());
+        context.drawImage(getBackgroundImage(), getCoordX(), getCoordY(), getWidth(), getHeight());
         context.fillText(this.message, getCoordX() + 30, getCoordY() + 30);
     }
 
-    protected abstract Image getImage();
+    /**
+     * Get background image where the message will be displayed
+     * @return background image
+     */
+    protected abstract Image getBackgroundImage();
 }

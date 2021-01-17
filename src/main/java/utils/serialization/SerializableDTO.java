@@ -6,4 +6,9 @@ public interface SerializableDTO<T> {
      * @return adapted DTO from current instance
      */
     T getDTO();
+
+    /**
+     * save current state
+     */
+    void save();
 }

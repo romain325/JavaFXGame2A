@@ -2,7 +2,7 @@ package main.java.core.logic.collision;
 
 import main.java.core.logic.Interactive;
 import main.java.utils.Vector;
-import main.java.core.visual.VisuelPersonnage;
+import main.java.core.visual.VisualPersonnage;
 import main.java.core.visual.map.Map;
 
 import javax.management.InstanceNotFoundException;
@@ -22,7 +22,7 @@ public class Collisioner {
      * @param joueur the player moving
      * @return will the player be out of the map limits
      */
-    public boolean isOutOfMapLimit(Vector nextPos, VisuelPersonnage joueur){
+    public boolean isOutOfMapLimit(Vector nextPos, VisualPersonnage joueur){
         return nextPos.isIn(maxSize, joueur.getWidth(), joueur.getHeight());
     }
 
@@ -32,7 +32,7 @@ public class Collisioner {
      * @param joueur current player
      * @return will the player collisioon with an object
      */
-    public boolean hasNextPosCollision(Vector nextPos, VisuelPersonnage joueur){
+    public boolean hasNextPosCollision(Vector nextPos, VisualPersonnage joueur){
         for (var elem: map.getCollisionables()) {
             if(elem.hasCollision() && this.collisionIntersects(elem,nextPos, joueur)){
                 return true;
@@ -47,7 +47,7 @@ public class Collisioner {
      * @return interactive object in player scope
      * @throws InstanceNotFoundException No interactive object found in player scope
      */
-    public Interactive getInteractiveObject(VisuelPersonnage joueur) throws InstanceNotFoundException {
+    public Interactive getInteractiveObject(VisualPersonnage joueur) throws InstanceNotFoundException {
         for (Interactive obj: map.getInteractives()) {
             if(this.canInteractWith(obj, joueur)){
                 return obj;
@@ -62,7 +62,7 @@ public class Collisioner {
      * @param joueur current player
      * @return is the player in the interactive object scope
      */
-    private boolean canInteractWith(Interactive interactive, VisuelPersonnage joueur){
+    private boolean canInteractWith(Interactive interactive, VisualPersonnage joueur){
         return Vector.intersects(
                 joueur.getPosition(),
                 joueur.getPosition().sum(joueur.getWidth(), joueur.getHeight()),
@@ -78,7 +78,7 @@ public class Collisioner {
      * @param joueur player visual
      * @return is there a collision
      */
-    private boolean collisionIntersects(Collisionable collisionable, Vector nextPos,VisuelPersonnage joueur){
+    private boolean collisionIntersects(Collisionable collisionable, Vector nextPos, VisualPersonnage joueur){
         return Vector.intersects(
                 collisionable.getPosition(), collisionable.getPosition().sum(collisionable.getWidth(), collisionable.getHeight()),
                 nextPos, nextPos.sum(joueur.getWidth(), joueur.getHeight())

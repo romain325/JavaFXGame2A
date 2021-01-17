@@ -1,4 +1,4 @@
-package main.java.view.renderer;
+package main.java.core.visual;
 
 public enum ZIndex {
     MAP(1,false),
@@ -6,7 +6,7 @@ public enum ZIndex {
     ITEM(3,false),
     CHARACTER(4,true),
     GENERAL_UI(5,false),
-    DIALOG(6,false),
+    //DIALOG(6,false),
     MENU(7,false)
     ;
 
@@ -18,10 +18,18 @@ public enum ZIndex {
         this.hasCollision = hasCollision;
     }
 
+    /**
+     * index of the instance
+     * @return index
+     */
     public int getIndex() {
         return zindex;
     }
 
+    /**
+     * has collision
+     * @return instance collision
+     */
     public boolean hasCollision() {
         return hasCollision;
     }

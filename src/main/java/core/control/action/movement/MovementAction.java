@@ -14,7 +14,7 @@ public abstract class MovementAction extends Action {
      * @param newPos new player positio
      */
     public void moveTo(Vector newPos){
-        getPlayer().getJoueur().setCoord(newPos);
+        getPlayer().getJoueur().setPosition(newPos);
     }
 
     /**

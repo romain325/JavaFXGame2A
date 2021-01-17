@@ -3,9 +3,9 @@ package main.java.core.visual.sprite;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.java.utils.Vector;
-import main.java.core.visual.VisuelPersonnage;
+import main.java.core.visual.VisualPersonnage;
 
-public class StaticPlayerSprite extends VisuelPersonnage {
+public class StaticPlayerSprite extends VisualPersonnage implements Sprite {
 
     private final Image sprite;
 
@@ -22,8 +22,13 @@ public class StaticPlayerSprite extends VisuelPersonnage {
     @Override
     public void render(GraphicsContext context) {
         super.render(context);
-        if(this.sprite != null){
+        if(this.getSprite() != null){
             context.drawImage(sprite, this.getCoordX(), this.getCoordY());
         }
+    }
+
+    @Override
+    public Image getSprite() {
+        return this.sprite;
     }
 }

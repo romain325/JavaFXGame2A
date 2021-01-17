@@ -14,12 +14,12 @@ import main.java.core.logic.collision.InvisibleCollisionable;
 import main.java.utils.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
-import main.java.core.visual.Visuel;
+import main.java.core.visual.Visual;
 import main.java.core.visual.map.Map;
 import main.java.view.MainFrame;
 import main.java.view.Navigator;
 import main.java.view.renderer.CanvasRenderer;
-import main.java.view.renderer.Rendable;
+import main.java.core.logic.Rendable;
 
 import java.net.URL;
 import java.util.*;
@@ -72,7 +72,7 @@ public abstract class DefaultCanvasController implements Controller {
      * Add visual element
      * @param visuel Visuel element to render
      */
-    public void addMapElements(Visuel visuel){
+    public void addMapElements(Visual visuel){
         mapElements.add(visuel);
     }
 
