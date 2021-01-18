@@ -3,10 +3,13 @@ package main.java.view.controller;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.core.item.InteractZone;
+import main.java.core.item.Item;
+import main.java.core.item.ItemDTO;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.Vector;
+import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
 
 public class MainCanvasController extends DefaultCanvasController {
@@ -30,8 +33,8 @@ public class MainCanvasController extends DefaultCanvasController {
 
         // Add pnj
         addPNJ(new PNJ("John",new Vector(100,605), false));
-        addPNJ(new PNJ("Marie",new Vector(200,200)));
-        addPNJ(new PNJ("Andre",new Vector(100,100)));
+        addPNJ(new PNJ("Marie",new Vector(520,340)));
+        addPNJ(new PNJ("Andre",new Vector(515,215)));
 
         // Add Object
         /*
@@ -44,13 +47,14 @@ public class MainCanvasController extends DefaultCanvasController {
         fountain.save();
 
         new InteractZone("bridge", 485,505, 20,20,"The bridge is broken and you can't get through it", true, true).save();
-         */
 
-        // new InteractZone("hotel", 615,195, 40,5,"You enter the hotel\nThe hall seems huge and totally disproportional\nDo you think the dev is tired or this is wanted ?", true, true).save();
-        // addItem(new Item(SerializationManager.deserializeObject("hotel.obj"), playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
+        new Item("bloodPuddle", 365,350,"You see puddles made out of blood & dirt\nFrom where does it come from ?", 2,3).save();
 
-        addItem(new InteractZone("hotel",615,195,40,5,"oui", true, true, playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
+        new Item("bloodBucket", 220,350,"There is a gory bucket with Andre's head inside !\nNot him!\nWhat is going on around here", 3,4).save();
 
+        */
+
+        addItem(new InteractZone("hotel",615,195,40,5,"You enter the hotel\nThe hall seems huge and totally disproportional\nDo you think the dev is tired or this is wanted ?", true, true, playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
 
         loadItems("main");
         loadCollisionElements("main");

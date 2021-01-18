@@ -2,10 +2,14 @@ package main.java.view.controller;
 
 import javafx.scene.image.Image;
 import main.java.core.control.PlayerController;
+import main.java.core.item.InteractZone;
+import main.java.core.item.Item;
+import main.java.core.item.ItemDTO;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.ui.InfoBox;
 import main.java.utils.Vector;
+import main.java.utils.serialization.SerializationManager;
 import main.java.view.FRAME;
 
 public class Batiment1CanvasController extends DefaultCanvasController{
@@ -36,7 +40,11 @@ public class Batiment1CanvasController extends DefaultCanvasController{
         Item registeryHotel = new InteractZone("registeryHotel", 655,20, 20,20,"A registery of the hotel staff\nYou recognize the receptionist !\nHis name is \"Sir Alfred\"", true, false);
         registeryHotel.setHintValue(1);
         registeryHotel.save();
-         */
+
+        Item knives = new InteractZone("knivesCollection", 320,135, 80,10, "There is a huge collection of knives behind the receptionist's desk.\nKinda creepy", false,false);
+        knives.setHintValue(1);
+        knives.save();
+        */
 
         loadItems("batiment1");
         loadCollisionElements("batiment1");
