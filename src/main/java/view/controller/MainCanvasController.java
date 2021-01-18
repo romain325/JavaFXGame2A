@@ -3,13 +3,10 @@ package main.java.view.controller;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.core.item.InteractZone;
-import main.java.core.item.Item;
-import main.java.core.item.ItemDTO;
-import main.java.utils.Vector;
 import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.ui.InfoBox;
-import main.java.utils.serialization.SerializationManager;
+import main.java.utils.Vector;
 import main.java.view.FRAME;
 
 public class MainCanvasController extends DefaultCanvasController {
@@ -19,7 +16,7 @@ public class MainCanvasController extends DefaultCanvasController {
         this.getPlayer().setPosition(new Vector(440,505));
     }
 
-    private Image background = new Image(getClass().getResourceAsStream("/img/map.png"));
+    private final Image background = new Image(getClass().getResourceAsStream("/img/map.png"));
 
     @Override
     protected Image getBackgroundImage() {
@@ -49,8 +46,11 @@ public class MainCanvasController extends DefaultCanvasController {
         new InteractZone("bridge", 485,505, 20,20,"The bridge is broken and you can't get through it", true, true).save();
          */
 
-        new InteractZone("hotel", 615,195, 40,1,"You enter the hotel\nThe hall seems huge and totally disproportional\nDo you think the dev is tired or this is wanted ?", true, true).save();
-        addItem(new Item(SerializationManager.deserializeObject("hotel.obj"), playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
+        // new InteractZone("hotel", 615,195, 40,5,"You enter the hotel\nThe hall seems huge and totally disproportional\nDo you think the dev is tired or this is wanted ?", true, true).save();
+        // addItem(new Item(SerializationManager.deserializeObject("hotel.obj"), playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
+
+        addItem(new InteractZone("hotel",615,195,40,5,"oui", true, true, playerController -> navigator.switchScene(FRAME.PLAYABLE_CANVAS, true, new Batiment1CanvasController(getPlayer()))));
+
 
         loadItems("main");
         loadCollisionElements("main");

@@ -4,13 +4,11 @@
 
 |Demande | Preuve|
 |---|---|
-|Je sais concevoir un diagramme UML intégrant des notions de qualité et correspondant exactement à l’application que j’ai à développer.| Rien|
-|Je sais décrire un diagramme UML en mettant en valeur et en justifier les éléments essentiels.||
-|Je sais documenter mon code et en générer la documentation.||
-|Je sais décrire le contexte de mon application, pour que n’importe qui soit capable de comprendre à quoi elle
-sert.||
-|Je sais faire un diagramme de cas d’utilisation pour mettre en avant les différentes fonctionnalités de mon
-application.||
+|Je sais concevoir un diagramme UML intégrant des notions de qualité et correspondant exactement à l’application que j’ai à développer.| Fichier StarUML dans le dossier documentation |
+|Je sais décrire un diagramme UML en mettant en valeur et en justifier les éléments essentiels.| Voir documentation StarUML |
+|Je sais documenter mon code et en générer la documentation.| Voir documentation JavaDoc |
+|Je sais décrire le contexte de mon application, pour que n’importe qui soit capable de comprendre à quoi elle sert.| Voir documentation |
+|Je sais faire un diagramme de cas d’utilisation pour mettre en avant les différentes fonctionnalités de mon application.| voir documentation/useCase.png |
 
 
 ## Code
@@ -18,8 +16,8 @@ application.||
 |Demande | Preuve|
 |---|---|
 |Je maîtrise les règles de nommage Java. | Utilisation du CamelCase (package=minuscule, classe=majuscule, méthode et attribut = minuscule, utilisation majuscule pour marquer changement de mot dans les noms: exemple: romainOlivier )|
-|Je sais binder bidirectionnellement deux propriétés JavaFX.|[Utilisation dans l'intro du jeu: main.java.view.controller.KnownStart ou StartPage](../src/main/java/view/controller/StartPage.java)|
-|Je sais binder unidirectionnelement deux propriétés JavaFX.|[Utilisation dans l'intro du jeu: main.java.view.controller.KnownStart ou StartPage](../src/main/java/view/controller/StartPage.java)|
+|Je sais binder bidirectionnellement deux propriétés JavaFX.|[Utilisation dans l'intro du jeu: main.java.view.controller.KnownStart ou StartPage](../../src/main/java/view/controller/StartPage.java)|
+|Je sais binder unidirectionnelement deux propriétés JavaFX.|[Utilisation dans l'intro du jeu: main.java.view.controller.KnownStart ou StartPage](../../src/main/java/view/controller/StartPage.java)|
 |Je sais coder une classe Java en respectant des contraintes de qualité de lecture de code.|Respect des règles d'écriture (camelCase, ordre des définitions: attributs,constructeurs,méthodes), identations, nommage clairs des variables|
 |Je sais contraindre les éléments de ma vue, avec du binding FXML.|Valdiation du prénom dans la vue StartPage|
 |Je sais définir une CellFactory fabriquant des cellules qui se mettent à jour au changement du modèle.| //TODO Add CellFactory (EndGame when adding sentence ?) |
