@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import main.java.core.control.PlayerController;
 import main.java.core.item.Item;
+import main.java.core.item.ItemDTO;
 import main.java.core.logic.collision.Collisionable;
 import main.java.core.logic.collision.Collisioner;
 import main.java.core.logic.GameLoop;
@@ -16,13 +17,20 @@ import main.java.core.personnage.Joueur;
 import main.java.core.personnage.PNJ;
 import main.java.core.visual.Visual;
 import main.java.core.visual.map.Map;
+import main.java.utils.serialization.SerializationManager;
 import main.java.view.MainFrame;
 import main.java.view.Navigator;
 import main.java.view.renderer.CanvasRenderer;
 import main.java.core.logic.Rendable;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 public abstract class DefaultCanvasController implements Controller {
     @FXML
@@ -162,6 +170,21 @@ public abstract class DefaultCanvasController implements Controller {
     }
 
     /**
+     * add an item from the resource folder
+     * @param itemPath path of the item
+     */
+    protected void addItem(Path itemPath){
+        Item item = SerializationManager.<ItemDTO>deserializeObject(itemPath.toString()).getInstance();
+        if(
+                getPlayer().getAdvancement().getCollectedItems().contains(item.getNom()) ||
+                        getPlayer().getAdvancement().getDayElapsed() < item.getApparitionDay()
+        ) return;
+        if(item.hasCollision()) addCollisionableElements(item);
+        if(item.isInteractive()) addInteractiveElements(item);
+        if(item.getVisual().isVisible()) addMapElements(item.getVisual());
+    }
+
+    /**
      * Add a new PNJ (Visuel, Interactive) if he's not dead
      * @param pnj  pnj to add
      */
@@ -187,6 +210,19 @@ public abstract class DefaultCanvasController implements Controller {
                 addCollisionableElements(new InvisibleCollisionable(new Vector(values[0], values[1]), values[2], values[3]));
             }
         }catch (InvalidPropertiesFormatException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * load every items contained in the resources folder
+     * @param folderName folder containing item obj
+     */
+    protected void loadItems(String folderName){
+        try(Stream<Path> paths = Files.walk(Paths.get(getClass().getResource("/item/" + folderName).toURI()))){
+            paths.filter(Files::isRegularFile)
+                    .forEach(this::addItem);
+        } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
     }

@@ -30,7 +30,7 @@ public class Item implements Interactive, Consommable, Collisionable, Initializa
     private final String nom;
     private final String message;
     protected Visual visual;
-    private Action action = playerController -> {};
+    protected Action action = playerController -> {};
 
     public Item(String nom, int x,int y,String message, int hintVal, int apparitionDay){
         this(nom, new StaticItemSprite(x,y,nom), message, true, hintVal, apparitionDay);
