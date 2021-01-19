@@ -13,9 +13,9 @@ Mais celui-ci doit être rapide ! Et il doit réussir à s'enfuir avant que l'hi
 
 ## Documentation
 
-- [Diagramme de Classe](./Classe.pdf)
-- [Diagramme de Cas d'utilisation](./UseCase.pdf)
-- [JavaDoc](./javadoc/index.html)
-- [Preuves demandées](./Preuves.pdf)
+- [Diagramme de Classe](../Classe.pdf)
+- [Diagramme de Cas d'utilisation](../UseCase.pdf)
+- [JavaDoc](../javadoc/index.html)
+- [Preuves demandées](../Preuves.pdf)
 
 > *En cas de problème avec les pdfs, les fichiers sources sont trouvables dans le dossier .raw*
