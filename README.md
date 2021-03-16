@@ -1,5 +1,9 @@
 # README
 
+## Notes
+
+Ayant travaillé entierement seul sur le code, le projet n'est pas dans sa version la plus propre car ayant du effectuer le double du travail demandé
+
 ## Description
 
 Numéro de projet: 09
